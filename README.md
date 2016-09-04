@@ -5,7 +5,7 @@ When analyzing an algorithm is very hard to make an accurate assumption on how l
 
 The big oh notation was created to simplify the analysis of an algorithm since it considers only the order of grown based on a single variable: the input size. While analyzing an algorithm, the key point is to take out low order terms and focus on the high order terms so, if the time running an algorithm is T(n) = 5nˆ3 + 2nˆ2 + 16n + 2, where n is the input size, we can say that the O(T(n)) is nˆ3. 
 
-But why? the answer is very simple, for large values of n, the low order terms has a very small contribution to the grand total of the running time for the algorithm. To prove matematically that f(n) = O(g(n)), assuming that g(n) is just an arbitrary function that describe the running time for a particular algorithm, we multiply f(n) by a constant c and we take a c0 (starting point) where the running time of c.f(n) is equal to c.g(n). If f(n) grows faster than g(n) after multiplying by that constant we can say that f(n) = O(g(n)).
+But why? the answer is very simple, for large values of n, the low order terms has a very small contribution to the grand total of the running time for the algorithm. To prove mathematically that f(n) = O(g(n)), assuming that g(n) is just an arbitrary function that describe the running time for a particular algorithm, we multiply f(n) by a constant c and we take a n0 (starting point) where the running time of c.f(n) is equal to c.g(n) and 0 <= f(n) <= c.g(n) for all n >= n0. If f(n) grows faster than g(n) after multiplying by that constant we can say that f(n) = O(g(n)).
 
 
 ## Divide and Conquer Algorithms
@@ -20,7 +20,7 @@ Divide and conquer usually takes three steps:
 
 ### Binary search:
 
-Iterates through a ordered list of elements splitting the list in half in each iteration. If the mid element is equal to the "key" which we're looking for, returns the index of the key, otherwise checks if the key is bigger or lower than the mid element and splits the list again until the low index is less or equal than the high index. This algorithm has the complexity of O(log n) since the array is splited in half each time we look for the element, it also assumes that the list is sorted, otherwise they result cannot be predicted.
+Iterates through a sorted list of elements splitting the list in half in each iteration. If the mid element is equal to the "key" which we're looking for, returns the index of the key, otherwise checks if the key is bigger or lower than the mid element and splits the list again until the low index is less or equal than the high index. This algorithm has the complexity of O(log n) since the array is splited in half each time we look for the element, it also assumes that the list is sorted, otherwise they result cannot be predicted.
 
 **Key points:**
 - Doesn't have a combine step
@@ -87,11 +87,10 @@ d: exponent used on the running time for the combined step
 - O(nˆlogˆ(bˆa))	if a > bˆd
 
 
-
 ### Other divide and conquer algorithms:
 
-	- Closest pair problem: https://rosettacode.org/wiki/Closest-pair_problem#Java
-	- Strassen's matrix multiplication: http://www.stoimen.com/blog/2012/11/26/computer-algorithms-strassens-matrix-multiplication/
+- Closest pair problem: https://rosettacode.org/wiki/Closest-pair_problem#Java
+- Strassen's matrix multiplication: http://www.stoimen.com/blog/2012/11/26/computer-algorithms-strassens-matrix-multiplication/
 
 
 ## Books

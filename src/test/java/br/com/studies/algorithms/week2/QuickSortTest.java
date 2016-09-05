@@ -15,6 +15,7 @@ import org.junit.Test;
 
 import br.com.studies.algorithms.week1.TestSortUtils;
 
+@SuppressWarnings({ "rawtypes", "unchecked" })
 public class QuickSortTest {
 
 	private QuickSort lomutos;
@@ -56,7 +57,6 @@ public class QuickSortTest {
 
 	@Test
 	public void quickSortLomutosMedianElPivot() throws IOException, URISyntaxException{
-		//objs = new ArrayList<>(Arrays.asList(new String[]{ "8", "2", "4", "5", "7", "1" }));
 		lomutos.setPivotStrategy(new MedianElemPivotStrategy());
 		
 		List sorted = new ArrayList<>(unsorted);
@@ -68,7 +68,6 @@ public class QuickSortTest {
 	
 	@Test
 	public void quickSortLomutosRandomElPivot() throws IOException, URISyntaxException{
-		//objs = new ArrayList<>(Arrays.asList(new String[]{ "8", "2", "4", "5", "7", "1" }));
 		lomutos.setPivotStrategy(new RandomPivotStrategy());
 		
 		List sorted = new ArrayList<>(unsorted);
@@ -81,7 +80,6 @@ public class QuickSortTest {
 	@Test
 	@Ignore
 	public void quickSortHoaresFirstElPivot() throws IOException, URISyntaxException {
-		//unordered = new ArrayList<>(Arrays.asList(new Integer[]{ 8, 2, 4, 5, 7, 1 }));
 		List sorted = new ArrayList<>(unsorted);
 		int comp = hoares.sort(sorted);
 		System.out.println("Hoares - Comparisons for Quicksort first pivot element: " + comp);

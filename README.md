@@ -23,8 +23,8 @@ But why? the answer is very simple, for large values of n, an low order term has
 
 The main focus of big Oh notation is to describe the worst case (upper bound) but there're other notations:
 
-**Big Omega:** Describes the best case of an algorithm (lower bound).
-**Theta:** It's used when the worst case is also the best case (upper bound is equal to the lower bound).
+- **Big Omega:** Describes the best case of an algorithm (lower bound).
+- **Theta:** It's used when the worst case is also the best case (upper bound is equal to the lower bound).
 
 
 ## Divide and Conquer Algorithms
@@ -97,9 +97,9 @@ General formula applied to divide and conquer algorithms to facilitate the analy
 
 f(n) can also be replaced by the O(nˆd) where d is equivalent of the exponent used to express the running time of the combined step
 
-**a:** recursive calls
-**b:** input shrink factor
-**d:** exponent used on the running time for the combined step
+- **a:** recursive calls
+- **b:** input shrink factor
+- **d:** exponent used on the running time for the combined step
 
 - O(nˆd (log n)) 	if a = bˆd 
 - O(nˆd) 			if a < bˆd
@@ -110,6 +110,33 @@ f(n) can also be replaced by the O(nˆd) where d is equivalent of the exponent u
 
 - Closest pair problem: https://rosettacode.org/wiki/Closest-pair_problem#Java
 - Strassen's matrix multiplication: http://www.stoimen.com/blog/2012/11/26/computer-algorithms-strassens-matrix-multiplication/
+
+
+## Linear time selection
+
+When we try to find the smallest or the biggest element of an array/list, the simplest approach is to iterate through an array and find the appropriate element, which can be solved in linear time O(n). But what about getting the "second smallest" element of a list? One can say that we can sort the list and get the second item on the list but since we'll need to sort the list, how can we do better? The answer is: yes, we can :)
+
+The linear time selection uses a modified version of the quick-sort named quickselection to find the kth-smallest element (kth order statistic) on a array/list in linear time using a random pivot. The worst case of quickselection is O(nˆ2).
+
+```
+  // Returns the n-th smallest element of list within left..right inclusive
+  // (i.e. left <= n <= right).
+  // The search space within the array is changing for each round - but the list
+  // is still the same size. Thus, n does not need to be updated with each round.
+  function select(list, left, right, n)
+     if left = right        // If the list contains only one element,
+         return list[left]  // return that element
+     pivotIndex  := ...     // select a pivotIndex between left and right,
+                            // e.g., left + floor(rand() % (right - left + 1))
+     pivotIndex  := partition(list, left, right, pivotIndex)
+     // The pivot is in its final sorted position
+     if n = pivotIndex
+         return list[n]
+     else if n < pivotIndex
+         return select(list, left, pivotIndex - 1, n)
+     else
+         return select(list, pivotIndex + 1, right, n)
+```
 
 ## Books
 

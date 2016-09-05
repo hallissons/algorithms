@@ -9,15 +9,15 @@ But why? the answer is very simple, for large values of n, an low order term has
 
 ### Order of growth
 
-Order of growth | Description | Example
------------- | -------------
-O(1) | Constant: A program which executes a fixed number of operations, does not depend on N. | add two numbers
-O(log n) | Logarithmic: A program which executes in logarithmic time, its barely slower than a constant-time program. | binary search.
-O(n) | Linear: A program which executes in linear time based on the input. | find the maximum
-O(n (log n)) | Linearithmic: A program which executes in n log n time based on the input. | merge sort
-O(nˆ2) | Quadratic: A program which grows in quadratic time based on the input, typically two nested loops. | insertion sort
-O(nˆ3) | Cubic: A program which grows in cubic time based on the input. | matrix multiplication
-O(bˆn) | Exponential: A program which grows in exponential time based on some constant b where b > 1. | Check all subsets
+| Order of growth | Description 																								  | Example 			  |
+| --------------- | ------------------------------------------------------------------------------------------------------------- |---------------------- |
+| O(1)			  | Constant: A program which executes a fixed number of operations, does not depend on N. 						  | add two numbers 	  |
+| O(log n) 		  | Logarithmic: A program which executes in logarithmic time, its barely slower than a constant-time program. 	  | binary search 		  |
+| O(n) 			  | Linear: A program which executes in linear time based on the input. 										  | find the maximum	  |
+| O(n (log n)) 	  | Linearithmic: A program which executes in n log n time based on the input. 									  | merge sort			  |
+| O(nˆ2) 		  | Quadratic: A program which grows in quadratic time based on the input, typically two nested loops. 			  | insertion sort		  |
+| O(nˆ3) 		  | Cubic: A program which grows in cubic time based on the input. 												  | matrix multiplication |
+| O(bˆn) 		  | Exponential: A program which grows in exponential time based on some constant b where b > 1. 				  | Check all subsets	  |
 
 ### Other notations
 
@@ -133,9 +133,9 @@ f(n) can also be replaced by the O(nˆd) where d is equivalent of the exponent u
 - [x] SW Section 2.3
 
 ### Third week
-- [] CLRS Chapter 9, 22 (Only 22.1)
-- [] DPV Chapter 3 (only 3.1)
-- [] KT Chapter 13, Sections 13.2,13.5
-- [] SW Chapter 4, Section 4.1
+- [ ] CLRS Chapter 9, 22 (Only 22.1)
+- [ ] DPV Chapter 3 (only 3.1)
+- [ ] KT Chapter 13, Sections 13.2,13.5
+- [ ] SW Chapter 4, Section 4.1
 
 

@@ -1,10 +1,10 @@
-package br.com.studies.algorithms;
+package br.com.studies.algorithms.utils;
 
 import java.util.List;
 
-public final class SortUtils {
+public final class ObjectUtils {
 
-	private SortUtils() {
+	private ObjectUtils() {
 	}
 
 	public static void swap(List<Object> ls, int i, int j) {

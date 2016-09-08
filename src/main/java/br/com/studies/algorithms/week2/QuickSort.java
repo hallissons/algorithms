@@ -3,7 +3,7 @@ package br.com.studies.algorithms.week2;
 import java.util.List;
 
 import br.com.studies.algorithms.Sort;
-import br.com.studies.algorithms.SortUtils;
+import br.com.studies.algorithms.utils.ObjectUtils;
 
 public abstract class QuickSort implements Sort {
 
@@ -35,7 +35,7 @@ public abstract class QuickSort implements Sort {
 			return 0;
 		}
 		Pivot pivot = pivotStrategy.choose(ls, low, high);
-		SortUtils.swap(ls, low, pivot.getIndex());
+		ObjectUtils.swap(ls, low, pivot.getIndex());
 		int index = partition(ls, low, high, pivot);
 		return (length - 1) + sort(ls, low, index - 1) + sort(ls, index, high);
 	}

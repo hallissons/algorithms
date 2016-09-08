@@ -116,7 +116,8 @@ f(n) can also be replaced by the O(nˆd) where d is equivalent of the exponent u
 
 When we try to find the smallest or the biggest element of an array/list, the simplest approach is to iterate through an array and find the appropriate element, which can be solved in linear time O(n). But what about getting the "second smallest" element of a list? One can say that we can sort the list and get the second item on the list but since we'll need to sort the list, how can we do better? The answer is: yes, we can :)
 
-The linear time selection uses a modified version of the quick-sort named quickselection to find the kth-smallest element (kth order statistic) on a array/list in linear time using a random pivot. The worst case of quickselection is O(nˆ2).
+The linear time selection uses a modified version of the quick-sort named quickselection to find the kth-smallest element (kth order statistic) on a array/list in linear time using a random pivot. The worst case of quickselection is O(nˆ2) and it occurs only if we are very unlucky to always select the pivot as the smallest element in all times. While analyzing this 
+algorithm we can see that we'll be selecting a good pivot 50% of the time which lies between the pivot in 25%-75% of the elements: [ 25% |p|   75%   ] or [   75%   |p| 25% ].
 
 ```
   // Returns the n-th smallest element of list within left..right inclusive
@@ -137,6 +138,18 @@ The linear time selection uses a modified version of the quick-sort named quicks
      else
          return select(list, pivotIndex + 1, right, n)
 ```
+
+** A good pivot is when we create a balanced split **
+## Deterministic selection
+
+The objective of the deterministic selection is the same of linear time selection, to find the kth-smallest element (kth order statistic) on a array/list in linear time. The main differences between the two is that the first uses randomized pivot, based on quick sort executing in average of O(n) and the latest doesn't use randomization executing in O(n) on its worst case.
+
+The master method cannot be used to measure the complexity due to the fact that the recursions (sub-problems) have different sizes.
+
+
+## Sorting problems
+
+A list cannot be sorted with a lower bound better than Omega(n (log n)) using sort comparison algorithms. To improve the running time, we need to know more information on the data: bucket sort, radix sort, counting sort.
 
 ## Books
 

@@ -2,7 +2,7 @@ package br.com.studies.algorithms.week2;
 
 import java.util.List;
 
-import br.com.studies.algorithms.SortUtils;
+import br.com.studies.algorithms.utils.ObjectUtils;
 
 public class MedianElemPivotStrategy implements PivotStrategy {
 
@@ -37,22 +37,20 @@ public class MedianElemPivotStrategy implements PivotStrategy {
 		Object b = ls.get(bIndex);
 		Object c = ls.get(cIndex);
 
-		if (SortUtils.toComparable(a).compareTo(b) > 0) {
-			if (SortUtils.toComparable(c).compareTo(a) > 0) {
+		if (ObjectUtils.toComparable(a).compareTo(b) > 0) {
+			if (ObjectUtils.toComparable(c).compareTo(a) > 0) {
 				return aIndex;
-			} else if (SortUtils.toComparable(c).compareTo(b) < 0) {
+			} else if (ObjectUtils.toComparable(c).compareTo(b) < 0) {
 				return bIndex;
-			} else {
-				return cIndex;
 			}
+			return cIndex;
 		} else {
-			if (SortUtils.toComparable(c).compareTo(a) < 0) {
+			if (ObjectUtils.toComparable(c).compareTo(a) < 0) {
 				return aIndex;
-			} else if (SortUtils.toComparable(c).compareTo(b) > 0) {
+			} else if (ObjectUtils.toComparable(c).compareTo(b) > 0) {
 				return bIndex;
-			} else {
-				return cIndex;
 			}
+			return cIndex;
 		}
 	}
 }

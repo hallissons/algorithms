@@ -2,7 +2,7 @@ package br.com.studies.algorithms.week2;
 
 import java.util.List;
 
-import br.com.studies.algorithms.SortUtils;
+import br.com.studies.algorithms.utils.ObjectUtils;
 
 public class QuickSortHoares extends QuickSort {
 	
@@ -13,14 +13,14 @@ public class QuickSortHoares extends QuickSort {
 	public int partition(List<Object> ls, int low, int high, Pivot pivot) {
 		high = high -1;
 		while (low <= high) {
-			while (SortUtils.toComparable(ls.get(low)).compareTo(pivot.getObj()) < 0) {
+			while (ObjectUtils.toComparable(ls.get(low)).compareTo(pivot.getObj()) < 0) {
 				low++;
 			}
-			while (SortUtils.toComparable(ls.get(high)).compareTo(pivot.getObj()) > 0) {
+			while (ObjectUtils.toComparable(ls.get(high)).compareTo(pivot.getObj()) > 0) {
 				high--;
 			}
 			if (low <= high) {
-				SortUtils.swap(ls, low, high);
+				ObjectUtils.swap(ls, low, high);
 				low++;
 				high--;
 			}

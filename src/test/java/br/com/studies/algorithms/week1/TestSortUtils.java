@@ -2,7 +2,7 @@ package br.com.studies.algorithms.week1;
 
 import java.util.List;
 
-import br.com.studies.algorithms.SortUtils;
+import br.com.studies.algorithms.utils.ObjectUtils;
 
 public final class TestSortUtils {
 
@@ -10,7 +10,7 @@ public final class TestSortUtils {
 	
 	public static boolean isSorted(List<Object> ls){
 		for (int i = 1; i < ls.size(); i++) {
-			if(SortUtils.toComparable(ls.get(i)).compareTo(ls.get(i-1)) < 0){
+			if(ObjectUtils.toComparable(ls.get(i)).compareTo(ls.get(i-1)) < 0){
 				return false;
 			}
 		}

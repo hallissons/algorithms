@@ -2,17 +2,15 @@ package br.com.studies.algorithms.week1;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+
+import br.com.studies.algorithms.utils.FileUtils;
 
 public class Inversion {
 
 	public static void main(String[] args) throws IOException, URISyntaxException {
-		Path p = Paths.get(Inversion.class.getResource("IntegerArray2.txt").toURI());
-		List<String> ls = Files.readAllLines(p);
+		List<String> ls = FileUtils.readAllLines("br/com/studies/algorithms/week1/IntegerArray2.txt");
 		List<Object> ints = new ArrayList<>();
 		for (int i = 0; i < ls.size(); i++) {
 			ints.add(Integer.parseInt(ls.get(i)));

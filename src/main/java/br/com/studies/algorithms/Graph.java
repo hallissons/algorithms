@@ -36,10 +36,11 @@ public class Graph {
 	public String toString() {
 		return String.format("Vertices: %s\nEdges: %s", vertices.keySet(), edges);
 	}
-	public static Graph build(List<String> lines){
+	
+	public static Graph build(List<String> lines) {
 		return build(lines, false);
 	}
-	
+
 	public static Graph build(List<String> lines, boolean directed) {
 		Graph gr = new Graph();
 		for (String line : lines) {

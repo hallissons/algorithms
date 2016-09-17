@@ -5,13 +5,17 @@ import java.util.List;
 
 public class Edge {
 	private final List<Vertex> ends = new ArrayList<Vertex>();
-	
-	public Vertex getFrom(){
+
+	public Vertex getFrom() {
 		return ends.get(0);
 	}
-	
-	public Vertex getTo(){
+
+	public Vertex getTo() {
 		return ends.get(1);
+	}
+
+	public List<Vertex> getEnds() {
+		return ends;
 	}
 
 	public Edge(Vertex fst, Vertex snd) {
@@ -40,7 +44,7 @@ public class Edge {
 		ends.remove(oldV);
 		ends.add(newV);
 	}
-	
+
 	@Override
 	public String toString(){
 		return String.format("From: %s To: %s", getFrom(), getTo());

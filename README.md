@@ -151,6 +151,47 @@ The master method cannot be used to measure the complexity due to the fact that 
 
 A list cannot be sorted with a lower bound better than Omega(n (log n)) using sort comparison algorithms. To improve the running time, we need to know more information on the data: bucket sort, radix sort, counting sort.
 
+## Graph Theory
+
+A graph is a set of vertices connected by edges, which can be used to represent and solve several types of computational problems: computer networks, social networks, image processing, etc. A graph can be directed or undirected.
+
+- **Common notations:** (V,E) where V = vertices and E = egdes; (N,M) where N = vertices and M = edges
+- **Common ways to represent a graph:** Adjacency lists and matrices.
+
+### Adjacency lists
+A list of structured objects used to represent "edges" and "vertices" where each edge has a list of vertices and each vertex has a list of edges (many-to-many relationship). The main advantages on representing a graph using this approach is the amount of space used by a graph: O(n+m) and the fact that searches can be done in a more straight forward way compared to matrices. 
+
+### Adjacency matrix
+A matrix can be used to represent a graph with a size of NxN (N = number of vertices) where each position has one bit (1 or 0). The data structure is simpler but it can spend more space since for a large set of vertices, the matrix will have a bit for every edge, even if the edge is empty leading to O(nˆ2). The main advantage on this approach is that an algorithm can take advantage on matrices operations to solve problems, which can reduce the complexity of an algorithm (e.g.: check an edge in constant time).
+
+### Minimum cut problem
+
+In graph theory, a minimum cut of a graph is a cut (a partition of the vertices of a graph into two disjoint subsets that are joined by at least one edge) that is minimal in some sense.
+
+### The random contraction algorithm (Karger's algorithm)
+
+A edge is select randomly and removed from the graph until the graph has 2 vertices: minimum cut.
+          F
+|  A1  | \ /   |  B1  |  
+|  A2  | / \   |  B2  |  
+|  A3  | ---\--|  B3  |  
+
+
+Pr[output is (A,B)] = Pr[never contracts an edge of F] = Pr['S1 /\ 'S2 /\ 'S3.../\ 'Sn-2] <= 2/n(n-1) <= 1/2ˆn
+
+The probability is very small, if we ran the algorithm a fixed number of times and remember the smallest cut found, how many trials we need?
+
+O(Tm) = O(nˆ2 m log n).
+
+A graph can have multiple min cuts (e.g. a tree with vertices has (n-1) minimum cuts). The largest number of min cuts a graph with n vertices can have is (n choose 2) = n(n-1)/2
+
+#### **Steps:**
+1. while there are > 2 vertices
+2. pick the remaining edge(u,v) uniformly at random
+3. merge u and v in a single vertex
+4.    remove self loop
+5. return cut represented by 2 final vertices
+
 ## Books
 
 - CLRS: Cormen, Leiserson, Rivest, and Stein, Introduction to Algorithms (3rd edition)
@@ -173,9 +214,16 @@ A list cannot be sorted with a lower bound better than Omega(n (log n)) using so
 - [x] SW Section 2.3
 
 ### Third week
-- [ ] CLRS Chapter 9, 22 (Only 22.1)
-- [ ] DPV Chapter 3 (only 3.1)
-- [ ] KT Chapter 13, Sections 13.2,13.5
-- [ ] SW Chapter 4, Section 4.1
+- [x] CLRS Chapter 9, 22 (Only 22.1)
+- [x] DPV Chapter 3 (only 3.1)
+- [x] KT Chapter 13, Sections 13.2,13.5
+- [x] SW Chapter 4, Section 4.1
+
+### Fourth week
+- [ ] CLRS Chapter 22
+- [ ] DPV Chapter 3
+- [ ] KT Chapter 3, Section 3.5, 3.6
+- [ ] SW Chapter 4, Section 4.1,4.2
+
 
 

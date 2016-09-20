@@ -27,7 +27,7 @@ public class Edge {
 	}
 
 	public boolean contains(Vertex v1, Vertex v2) {
-		return ends.contains(v1) && ends.contains(v2);
+		return getFrom().equals(v1) && getTo().equals(v2);
 	}
 
 	public Vertex getOppositeVertex(Vertex v) {

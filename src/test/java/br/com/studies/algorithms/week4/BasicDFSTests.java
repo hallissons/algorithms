@@ -17,7 +17,7 @@ public class BasicDFSTests {
 		Graph gr = Graph.build(lines, true);
 
 		BasicDFS bfs = new BasicDFS();
-		Vertex firstV = gr.getVertex("s");
+		Vertex firstV = gr.getVertex(0);
 		List<Vertex> visited = bfs.visit(gr, firstV);
 
 		Assert.assertEquals(lines.size(), visited.size());

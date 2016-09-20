@@ -25,8 +25,7 @@ public class MinCut {
 			Vertex v1 = cleanVertex(gr, edge.getFrom(), edge);
 			Vertex v2 = cleanVertex(gr, edge.getTo(), edge);
 			// contract
-			String newLbl = String.format("%s:%s", v1.getLabel(), v2.getLabel());
-			Vertex mergedVertex = new Vertex(newLbl);
+			Vertex mergedVertex = new Vertex(v1.getLabel());
 			redirectEdges(gr, v1, mergedVertex);
 			redirectEdges(gr, v2, mergedVertex);
 			gr.addVertex(mergedVertex);

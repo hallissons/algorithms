@@ -34,9 +34,9 @@ public class BasicBFSTests {
 		Graph gr = Graph.build(lines);
 
 		Random rdm = new Random();
-		Set<String> keys = gr.getVertices().keySet();
-		List<String> vertices = new ArrayList<>(keys);
-		String rdmKey = vertices.get(rdm.nextInt(vertices.size() - 1));
+		Set<Integer> keys = gr.getVertices().keySet();
+		List<Integer> vertices = new ArrayList<>(keys);
+		Integer rdmKey = vertices.get(rdm.nextInt(vertices.size() - 1));
 		Vertex rdmVertex = gr.getVertex(rdmKey);
 
 		BasicBFS bfs = new BasicBFS();
@@ -52,8 +52,8 @@ public class BasicBFSTests {
 		Graph gr = Graph.build(lines);
 
 		BasicBFS bfs = new BasicBFS();
-		Vertex from = gr.getVertex("s");
-		Vertex to = gr.getVertex("e");
+		Vertex from = gr.getVertex(0);
+		Vertex to = gr.getVertex(5);
 		Integer shortestPath = bfs.shortestPath(gr, from, to);
 
 		Assert.assertEquals(Integer.valueOf(3), shortestPath);

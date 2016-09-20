@@ -186,6 +186,13 @@ O(Tm) = O(nˆ2 m log n).
 
 A graph can have multiple min cuts (e.g. a tree with vertices has (n-1) minimum cuts). The largest number of min cuts a graph with n vertices can have is (n choose 2) = n(n-1)/2
 
+#### **Steps:**
+1. while there are > 2 vertices
+2. pick the remaining edge(u,v) uniformly at random
+3. merge u and v in a single vertex
+4.    remove self loop
+5. return cut represented by 2 final vertices
+
 ### Breadth-First Search (BFS)
 
 Basic type of algorithm used to search elements in a graph, finding all the connected elements. It has running time of O(n+m) and has several motivations:
@@ -198,14 +205,34 @@ One of the main advantages of the BFS is that it can compute the shortest path b
 
 ### Depth-First Search (DFS)
 
-TODO
+Basic type of graph algorithm, built on top of a stack instead of a queue. It can be used to implement topological ordering and compute strongly connected components of a directed graph. The implementation is very similar to BFS but since it uses a stack as the main data structure to maintain the next node to be visited, one can use recursion to implement it.
 
-#### **Steps:**
-1. while there are > 2 vertices
-2. pick the remaining edge(u,v) uniformly at random
-3. merge u and v in a single vertex
-4.    remove self loop
-5. return cut represented by 2 final vertices
+This algorithm can be used to discover several properties from the graph, including all the forests (collection of trees). Those properties can be used as the main entry point for several algorithms.
+
+### Topological Sort 
+
+Used when a node has precedence from another, a very common example is a list of tasks. Two common implementations are: Kahn's algorithm or Depth-first search.
+
+- Can only occur if the graph is not a directed cycle.
+- Every direct acyclic graph has a sync vertex.
+- Runs in linear time O(m+n)
+
+### Strong Connected Components
+
+A strong connected component is a directed graph composed by a pair of vertices which can be reachable from one to another (v <-> f). A graph can be decomposed in strong connected components running dfs routine twice on graph, where one of the runs will take a transposed version of the graph (inverted edges) named: Kosraju's two-pass algorithm. Another way to discover a component is using Tarjan's algorithm. 
+
+Directed acyclic graphs = dags
+
+### Kosaraju's Two-Pass Algorithm
+
+1. Let Grev denote the graph G after the orientation of all arcs have been reversed.
+2. Run the DFS-Loop subroutine on Grev, processing vertices according to the given order, to obtain a
+finishing time f (v) for each vertex v ∈ V.
+3. Run the DFS-Loop subroutine on G, processing vertices in decreasing order of f(v), to assign a leader
+to each vertex v ∈ V.
+4. The strongly connected components of G correspond to vertices of G that share a common leader.
+
+Runs in O(m+n)
 
 ## Books
 
@@ -236,9 +263,9 @@ TODO
 
 ### Fourth week
 - [x] CLRS Chapter 22
-- [ ] DPV Chapter 3
+- [x] DPV Chapter 3
 - [x] KT Chapter 3, Section 3.5, 3.6
-- [ ] SW Chapter 4, Section 4.1, 4.2
+- [x] SW Chapter 4, Section 4.1, 4.2
 
 
 

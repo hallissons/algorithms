@@ -8,10 +8,10 @@ import java.util.Map;
 
 public class Graph {
 
-	private final Map<Integer, Vertex> vertices = new HashMap<Integer, Vertex>();
+	private final Map<String, Vertex> vertices = new HashMap<String, Vertex>();
 	private final List<Edge> edges = new ArrayList<Edge>();
 
-	public Map<Integer, Vertex> getVertices() {
+	public Map<String, Vertex> getVertices() {
 		return vertices;
 	}
 
@@ -23,7 +23,7 @@ public class Graph {
 		vertices.put(v.getLabel(), v);
 	}
 
-	public Vertex getVertex(Integer lbl) {
+	public Vertex getVertex(String lbl) {
 		Vertex v = vertices.get(lbl);
 		if (v == null) {
 			v = new Vertex(lbl);
@@ -48,12 +48,12 @@ public class Graph {
 
 			// First column is the vertex
 			String key = newEntry[0];
-			Vertex v = gr.getVertex(Integer.parseInt(key.trim()));
+			Vertex v = gr.getVertex(key.trim());
 
 			// Each other column is an end point from the first column
 			for (int i = 1; i < newEntry.length; i++) {
 				String adj = newEntry[i];
-				Vertex vAdj = gr.getVertex(Integer.parseInt(adj.trim()));
+				Vertex vAdj = gr.getVertex(adj.trim());
 				Edge edge = v.getEdgeTo(vAdj);
 				if (edge == null) {
 					edge = new Edge(v, vAdj);

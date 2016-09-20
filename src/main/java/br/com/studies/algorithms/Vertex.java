@@ -4,14 +4,14 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class Vertex implements Comparable<Vertex> {
-	private final Integer label;
+	private final String label;
 	private final Set<Edge> edges = new HashSet<Edge>();
 
-	public Vertex(Integer label) {
+	public Vertex(String label) {
 		this.label = label;
 	}
 
-	public Integer getLabel() {
+	public String getLabel() {
 		return label;
 	}
 

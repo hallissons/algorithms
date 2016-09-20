@@ -18,7 +18,7 @@ public class RecursiveDFSTests {
 		Graph gr = Graph.build(lines, true);
 
 		RecursiveDFS rdfs = new RecursiveDFS();
-		Vertex firstV = gr.getVertex(5);
+		Vertex firstV = gr.getVertex("u");
 		GraphSearch search = rdfs.visit(gr, firstV);
 		
 		System.out.println(search.getVisited());

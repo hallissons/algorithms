@@ -98,7 +98,7 @@ public class GraphSearch {
 		visitedVertexMap.put(vertex, vv);
 	}
 	
-	public VisitedVertex getVisitedVertex(Integer label){
+	public VisitedVertex getVisitedVertex(String label){
 		return getVisitedVertex(new Vertex(label));
 	}
 

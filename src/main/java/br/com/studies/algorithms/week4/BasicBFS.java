@@ -44,6 +44,13 @@ public class BasicBFS {
 		while (!q.isEmpty()) {
 			Vertex v = q.poll();
 			for (Edge edge : v.getEdges()) {
+				Vertex vOrig = edge.getFrom();
+				if (!visited.containsKey(vOrig)) {
+					Integer vDist = visited.get(v);
+					visited.put(vOrig, vDist + 1);
+					q.add(vOrig);
+				}
+				
 				Vertex vDest = edge.getTo();
 				if (!visited.containsKey(vDest)) {
 					Integer vDist = visited.get(v);

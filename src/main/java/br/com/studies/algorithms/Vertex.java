@@ -32,6 +32,10 @@ public class Vertex implements Comparable<Vertex> {
 		return null;
 	}
 	
+	public int labelToInt(){
+		return Integer.parseInt(label);
+	}
+	
 	@Override
 	public String toString(){
 		return label.toString();

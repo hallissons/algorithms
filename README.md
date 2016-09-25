@@ -171,10 +171,11 @@ In graph theory, a minimum cut of a graph is a cut (a partition of the vertices 
 ### The random contraction algorithm (Karger's algorithm)
 
 A edge is select randomly and removed from the graph until the graph has 2 vertices: minimum cut.
-
-           F
+		  F
 |  A1  | \ /   |  B1  |
+
 |  A2  | / \   |  B2  |
+
 |  A3  | ---\--|  B3  |
 
 
@@ -198,7 +199,7 @@ A graph can have multiple min cuts (e.g. a tree with vertices has (n-1) minimum 
 Basic type of algorithm used to search elements in a graph, finding all the connected elements. It has running time of O(n+m) and has several motivations:
 
 - Find bottleneks in a physical computer network.
-- Compute the shortest path between two elements e.g.: "The Bacon number".
+- Compute the shortest path between two elements e.g.: "The Bacon number". But only if each edge weight is equal to "1".
 - Compute a path based on a sequence of decisions.
 
 One of the main advantages of the BFS is that it can compute the shortest path between two elements just maintaining the level of each vertex while visiting the graph.
@@ -227,12 +228,84 @@ Directed acyclic graphs = dags
 
 1. Let Grev denote the graph G after the orientation of all arcs have been reversed.
 2. Run the DFS-Loop subroutine on Grev, processing vertices according to the given order, to obtain a
-finishing time f (v) for each vertex v ∈ V.
+finishing time f (v) for each vertex v E V.
 3. Run the DFS-Loop subroutine on G, processing vertices in decreasing order of f(v), to assign a leader
-to each vertex v ∈ V.
+to each vertex v E V.
 4. The strongly connected components of G correspond to vertices of G that share a common leader.
 
 Runs in O(m+n)
+
+### Dijkstra's Algorithm
+
+Used to compute the shortest path between two vertices using weighted edges. The algorithm has several variants to solve the following problems:
+
+- **Single-source shortest-paths problem:** given a graph G = (V,E), we want to find a shortest path from a given source vertex s E V to each vertex v E V. 
+- Single-destination shortest-paths problem: find a shortest path to a given destination vertex t from each vertex.
+- Single-pair shortest-path problem: Find a shortest path from u to v for given vertices u and v.
+- All-pairs shortest-paths problem: Find a shortest path from u to v for every pair of vertices u and v.
+
+```
+ 1  function Dijkstra(Graph, source):
+ 2
+ 3      create vertex set Q
+ 4
+ 5      for each vertex v in Graph:             // Initialization
+ 6          dist[v] ← INFINITY                  // Unknown distance from source to v
+ 7          prev[v] ← UNDEFINED                 // Previous node in optimal path from source
+ 8          add v to Q                          // All nodes initially in Q (unvisited nodes)
+ 9
+10      dist[source] ← 0                        // Distance from source to source
+11      
+12      while Q is not empty:
+13          u ← vertex in Q with min dist[u]    // Source node will be selected first
+14          remove u from Q 
+15          
+16          for each neighbor v of u:           // where v is still in Q.
+17              alt ← dist[u] + length(u, v)
+18              if alt < dist[v]:               // A shorter path to v has been found
+19                  dist[v] ← alt 
+20                  prev[v] ← u 
+21
+22      return dist[], prev[]
+```
+
+- Its based on BFS's principles.
+- The naive implementation takes O(m*n), but it can be improved using the correct data structure (e.g.: heap).
+- Lines 18-20 implements a technique called "relaxing" where each vertex is relaxed when a new path is found navigating through the vertices.
+- The algorithm can be optimized using fibonacci heap, topological sort or priority queues. When the optimization is done using fibonacci heap, the running time can be O(m log(n)).
+- The longest path can be found inverting the initialization to -INFINITY and inverting the logic described on the relaxing steps.
+
+### Parallel job scheduling
+
+Several jobs are scheduled to run in parallel using executors but some of them has other jobs as precedence. This problem can be solved using the "critical path method", which is equivalent to the longest-path problem
+
+
+### Bellman Ford algorithm
+
+Algorithm used on general cases when the graph has cycles and edge weights can be negative.
+
+- Parallel job scheduling when it has negative cycles (job has starting and ending time)
+- Currency rate exchanging
+
+## Data structures
+
+### Heap
+
+A container of objects that have keys. It supports the following operations:
+
+1. Insertion: Add a new object to a heap. Takes O(log n).
+2. Extract min/max: Extracts and remove the element with the minimum/maximum key value. Takes O(log n).
+3. Delete: removes an element from the heap. Takes O(n log n).
+4. Heapify: initialization of the heap using batch inserts, taking O(n) instead of O(n log n).
+
+Heap data structures can be used on several applications:
+
+- **Sorting:** Fast way to compute the repeated minimum, can be used to speed up selection sort selecting the minimum on each iteration, which takes the selection sort from O(n^2) to O(n log n), which can be also called as "Heap sort" with some modifications. Since this is still a comparison based sorting, it cannot be better than O(n log n). A well implemented quicksort/mergesort can still be better.
+
+- **Event Manager:** A collection of events can take advantage on heap data structure extracting the smallest timestamp.
+
+- **Median maintenance:** Extract the median element using two heaps, one with the smallest elements and one containing the highest elements. The median will be the max from the first list along with the min of the second list, depending on the size of each lists. If the sizes are unbalanced, one element needs to be moved to the other one.
+ 
 
 ## Books
 
@@ -266,6 +339,12 @@ Runs in O(m+n)
 - [x] DPV Chapter 3
 - [x] KT Chapter 3, Section 3.5, 3.6
 - [x] SW Chapter 4, Section 4.1, 4.2
+
+### Fifth week
+- [ ] CLRS Chapter 6,11,12,13 24 (Sections 3,4)
+- [ ] DPV Section 1.5
+- [x] KT Section 4.4
+- [ ] SW Section 3.3, 3.4, 4.4
 
 
 

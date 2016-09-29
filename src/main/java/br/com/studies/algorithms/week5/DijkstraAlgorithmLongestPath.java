@@ -34,8 +34,8 @@ public class DijkstraAlgorithmLongestPath {
 			distTo.put(v, new VertexDistance(v, Double.NEGATIVE_INFINITY));
 		}
 
-		VertexDistance distIni = new VertexDistance(ini, 0.0d);
-		distTo.put(ini, distIni);
+		VertexDistance distIni = distTo.get(ini);
+		distIni.setDistance(0.0d);
 		pq.add(distIni);
 
 		while (!pq.isEmpty()) {

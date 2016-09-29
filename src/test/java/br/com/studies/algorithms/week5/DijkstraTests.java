@@ -29,6 +29,21 @@ public class DijkstraTests {
 	}
 	
 	@Test
+	public void testRunBasicDijkstraHeap() {
+		List<String> lines = FileUtils.readAllLines("br/com/studies/algorithms/week5/stanford_test.txt");
+		Graph gr = Graph.build(lines, true);
+
+		Vertex s = gr.getVertex("s");
+		Vertex x = gr.getVertex("t");
+		DijkstraAlgorithmHeap shortPath = new DijkstraAlgorithmHeap(gr);
+		shortPath.run(s);
+		
+		String path = shortPath.printPath(s, x);
+		System.out.println(path);
+		Assert.assertEquals("s -> v -> w -> t", path);
+	}
+	
+	@Test
 	public void testRunBasicDijkstra() {
 		List<String> lines = FileUtils.readAllLines("br/com/studies/algorithms/week5/stanford_test.txt");
 		Graph gr = Graph.build(lines, true);

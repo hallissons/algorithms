@@ -1,4 +1,4 @@
-#Study notes for coursera's algorithm design analysis 1
+#Study notes for algorithm design analysis 1
 
 ##Big Oh notation
 When analyzing an algorithm is very hard to make an accurate assumption on how long a program will take to run. To do a proper analysis one has to take all variables into account: hardware used to execute the algorithm, cost of each step on that hardware, input size, etc.
@@ -279,7 +279,6 @@ Used to compute the shortest path between two vertices using weighted edges. The
 
 Several jobs are scheduled to run in parallel using executors but some of them has other jobs as precedence. This problem can be solved using the "critical path method", which is equivalent to the longest-path problem
 
-
 ### Bellman Ford algorithm
 
 Algorithm used on general cases when the graph has cycles and edge weights can be negative.
@@ -288,6 +287,18 @@ Algorithm used on general cases when the graph has cycles and edge weights can b
 - Currency rate exchanging
 
 ## Data structures
+
+The way we organize data play a important role while implementing an algorithm. Some structures are more suitable then others depending on the situation.
+
+- Which operations do you need as a client of a data structure?
+- How much space do you have available?
+
+- Sorted array: Supports several operations in O(1): select, min/max, pred/succ and rank. O(log n): search. O(n): insert and delete. Since the array is static, inserts and deletes are expensive.
+
+- Queue: First in, first out (FIFO).
+- Stack: Last in, first out (LIFO).
+- Heap: Ordered elements
+- Balanced Search Trees
 
 ### Heap
 
@@ -298,6 +309,8 @@ A container of objects that have keys. It supports the following operations:
 3. Delete: removes an element from the heap. Takes O(n log n).
 4. Heapify: initialization of the heap using batch inserts, taking O(n) instead of O(n log n).
 
+- Perfectly balanced binary tree
+
 Heap data structures can be used on several applications:
 
 - **Sorting:** Fast way to compute the repeated minimum, can be used to speed up selection sort selecting the minimum on each iteration, which takes the selection sort from O(n^2) to O(n log n), which can be also called as "Heap sort" with some modifications. Since this is still a comparison based sorting, it cannot be better than O(n log n). A well implemented quicksort/mergesort can still be better.
@@ -306,6 +319,75 @@ Heap data structures can be used on several applications:
 
 - **Median maintenance:** Extract the median element using two heaps, one with the smallest elements and one containing the highest elements. The median will be the max from the first list along with the min of the second list, depending on the size of each lists. If the sizes are unbalanced, one element needs to be moved to the other one.
  
+### Balanced Search Trees - BST
+
+A linked set of objects with a pointer to a parent with the following key properties:
+
+- Each element has three pointers: right, left, parent.
+- Each element has a key (which corresponds to the data for that node).
+- The element on the right is bigger than the element.
+- The element on the left is less than the element.
+
+Gives O(log n) running time for the following operations: search, select, min/max, pred/succ, rank, insert, delete and O(n) running time to output in sorted order. The worst case is O(height) and it occurs when the elements are inserted in a ordered way.
+
+### Red-black Trees
+
+Its a BST with an extra bit to record the "color" of the node (red or black). The color will be used to keep the tree balanced, which guarantees O(log n) for most of the operations. For that to happen, the following properties must hold:
+
+1. Every node is either red or black.
+2. The root is black.
+3. Every leaf (NIL) is black.
+4. If a node is red, then both its children are black.
+5. For each node, all simple paths from the node to descendant leaves contain the same number of black nodes.
+
+### Hash table
+
+Data structure used to maintain a set of stuff (transactions, people+associated data, IP addresses, etc.)
+
+- Basic operations which runs in O(1) time: Insert, Delete, Lookup
+- Doesn't Maintain ordering
+- Hash function used to map keys to positions
+- Each element will be stored in a "bucket" which can have collisions, just remember the birthday paradox "How many people we need to add in a room to have 50% of chance for them to have birthday on the same day?"
+
+- Hash function:
+(Objects of some universe) -- hash code --> (integer) -- compression function --> (buckets {0,1,2,3...n-1})
+
+1. Choose a n to be prime
+2. Not too close to a power of 2
+3. Not too close to a power of 10
+
+- **Colision resolution**
+
+- Chaining or separate chaining can be used as a technique to avoid collisions. Each bucket will have a linked list.
+A[h(x)]
+
+[ ] -> [A]
+[ ] 
+[ ] -> [B] -> [D]
+[ ] -> [C]
+
+- Chaining:
+	- Insert is O(1) when the list is empty.
+	- Lookup O(list length).
+	- The worst case can be when there's a single bucket for all elements
+
+- Open Addressing: Uses all slots on the hash table instead of storing a linked list for each slot. This is done through "probing", where a slot is evaluated and if it is empty, the key is inserted there, otherwise it is inserted on a different slot where the probing is incremented using the following strategies: linear, quadraditic and double hashing
+
+- Its pretty easy bad hash functions :)
+- Terrible solution: h(x) = first 3 digits of a phone number. In that case all the "bay area" will go to the same bucket
+- Mediocre solution: h(x) = last 3 digits of x, multiples of power of 2.
+- Ok solution: h(x) = 
+
+
+## Problems
+
+### 2-SUM Problem
+
+Given an array A and a integer T, find the two elements which sums up to T.
+
+- Naive: Scan the array and find all pair of sums and compare with T = O(nˆ2).
+- Better: Sort the array and for each element, find its complement based on T = O(n log n) -> O(n log n) to sort the array + O(log n) to find a complement for each element + O(n).
+- Even better: Use the hash table to lookup for elements, the running time will decrease to O(n).
 
 ## Books
 
@@ -341,10 +423,15 @@ Heap data structures can be used on several applications:
 - [x] SW Chapter 4, Section 4.1, 4.2
 
 ### Fifth week
-- [ ] CLRS Chapter 6,11,12,13 24 (Sections 3,4)
-- [ ] DPV Section 1.5
+- [x] CLRS Chapter 6, 12, 13 and 24 (Sections 3,4)
 - [x] KT Section 4.4
-- [ ] SW Section 3.3, 3.4, 4.4
+- [x] SW Section 3.2, 3.3, 4.4
+
+### Sixth week
+- [x] CLRS Chapter 11
+- [ ] DPV Section 1.5
+- [ ] KT Chapter 13 (Section 13.6)
+- [ ] SW Section 3.4, 3.5
 
 
 

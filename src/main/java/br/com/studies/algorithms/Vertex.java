@@ -6,6 +6,7 @@ import java.util.Set;
 public class Vertex implements Comparable<Vertex> {
 	private final String label;
 	private final Set<Edge> edges = new HashSet<Edge>();
+	private int index;
 
 	public Vertex(String label) {
 		this.label = label;
@@ -36,6 +37,14 @@ public class Vertex implements Comparable<Vertex> {
 		return Integer.parseInt(label);
 	}
 	
+	public int getIndex() {
+		return index;
+	}
+
+	public void setIndex(int index) {
+		this.index = index;
+	}
+
 	@Override
 	public String toString(){
 		return label.toString();

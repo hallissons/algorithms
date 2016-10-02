@@ -3,7 +3,6 @@ package br.com.studies.algorithms;
 @SuppressWarnings("rawtypes")
 public class TreeBST {
 	protected final Tree tree;
-	protected int size;
 
 	public TreeBST() {
 		this(new Tree());
@@ -13,42 +12,34 @@ public class TreeBST {
 		this.tree = tree;
 	}
 
-	public Node insert(Comparable data) {
-		Node y = null;
-		Node z = new Node(data);
-		Node x = tree.getRoot();
-
-		while (x != null) {
-			y = x;
-			if (z.getData().compareTo(x.getData()) < 0) {
-				x = x.getLeft();
-			} else {
-				x = x.getRight();
-			}
-		}
-		z.setParent(y);
-
-		// Tree is empty
-		if (y == null) {
-			tree.setRoot(z);
-		} else if (z.getData().compareTo(y.getData()) < 0) {
-			y.setLeft(z);
-		} else {
-			y.setRight(z);
-		}
-
-		size++;
-
-		return z;
+	public Node put(Comparable data) {
+		Node root = put(tree.getRoot(), data);
+		tree.setRoot(root);
+		return root;
 	}
 
+	private Node put(Node x, Comparable data) {
+		if (x == null) {
+			return new Node(data);
+		}
+		int cmp = data.compareTo(x.getData());
+		if (cmp < 0) {
+			x.setLeft(put(x.getLeft(), data));
+		} else if (cmp > 0) {
+			x.setRight(put(x.getRight(), data));
+		} else {
+			x.setData(data);
+		}
+		x.setN(1 + size(x.getLeft()) + size(x.getRight()));
+		return x;
+	}
+	
 	public void delete(Comparable data) {
 		Node z = search(data);
 		if (z == null) {
 			return;
 		}
 		delete(z);
-		size--;
 	}
 
 	public void delete(Node z) {
@@ -67,6 +58,8 @@ public class TreeBST {
 			y.setLeft(z.getLeft());
 			y.getLeft().setParent(y);
 		}
+
+		z.setN(1 + size(z.getLeft()) + size(z.getRight()));
 	}
 
 	public Node successor(Node t) {
@@ -116,7 +109,48 @@ public class TreeBST {
 	}
 
 	public int size() {
-		return size;
+		return size(tree.getRoot());
+	}
+
+	/**
+	 * Return the kth smallest key in the symbol table.
+	 *
+	 * @param k
+	 *            the order statistic
+	 * @return the kth smallest key in the symbol table
+	 * @throws IllegalArgumentException
+	 *             unless <tt>k</tt> is between 0 and <em>N</em> &minus; 1
+	 */
+	public Comparable select(int k) {
+		if (k < 0 || k >= size()) {
+			throw new IllegalArgumentException();
+		}
+		Node x = select(tree.getRoot(), k);
+		return x.getData();
+	}
+
+	// Return key of rank k.
+	private Node select(Node x, int k) {
+		if (x == null) {
+			return null;
+		}
+		int t = size(x.getLeft());
+		if (t > k) {
+			return select(x.getLeft(), k);
+		} else if (t < k) {
+			return select(x.getRight(), k - t - 1);
+		} else {
+			return x;
+		}
+	}
+
+	// return number of key-value pairs in BST rooted at x
+	protected int size(Node x) {
+		if (x == null) {
+			return 0;
+		} else {
+			return x.getN();
+		}
 	}
 
 	protected Node min(Node x) {

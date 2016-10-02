@@ -356,7 +356,16 @@ Data structure used to maintain a set of stuff (transactions, people+associated 
 2. Not too close to a power of 2
 3. Not too close to a power of 10
 
-- **Colision resolution**
+- Pathological data set: a data set which makes a hash function h(x) to address all the elements to the same bucket, "all hash function has its kryptonite".
+
+Solutions: use a cryptographic hash function, use randomization, design a family H of hash functions. When choosing a family H, the probability of the collision of two keys is 1/n (a.k.a universal family of hash functions).
+
+- **Collision resolution**
+
+- **Chaining:**
+	- Insert is O(1) when the list is empty.
+	- Lookup O(list length).
+	- The worst case can be when there's a single bucket for all elements
 
 - Chaining or separate chaining can be used as a technique to avoid collisions. Each bucket will have a linked list.
 A[h(x)]
@@ -366,18 +375,28 @@ A[h(x)]
 [ ] -> [B] -> [D]
 [ ] -> [C]
 
-- Chaining:
-	- Insert is O(1) when the list is empty.
-	- Lookup O(list length).
-	- The worst case can be when there's a single bucket for all elements
 
-- Open Addressing: Uses all slots on the hash table instead of storing a linked list for each slot. This is done through "probing", where a slot is evaluated and if it is empty, the key is inserted there, otherwise it is inserted on a different slot where the probing is incremented using the following strategies: linear, quadraditic and double hashing
+- **Open Addressing:** Uses all slots on the hash table instead of storing a linked list for each slot. This is done through "probing", where a slot is evaluated and if it is empty, the key is inserted there, otherwise it is inserted on a different slot where the probing is incremented using the following strategies: linear, quadraditic and double hashing
 
 - Its pretty easy bad hash functions :)
 - Terrible solution: h(x) = first 3 digits of a phone number. In that case all the "bay area" will go to the same bucket
 - Mediocre solution: h(x) = last 3 digits of x, multiples of power of 2.
-- Ok solution: h(x) = 
 
+### Bloom Filters
+
+Lightweight version of hash table with following characteristics:
+
+- More space efficient
+- Can't store an associated object
+- No deletions
+- Small false positive probability
+
+- **Applications**
+- Original: early spellcheckers.
+- list of forbidden passwords.
+- Network routers: limited memory, need to be super-fast
+
+Ingredients: Array of n bits (n/|S| = # of bits per object in data set S)
 
 ## Problems
 
@@ -429,9 +448,9 @@ Given an array A and a integer T, find the two elements which sums up to T.
 
 ### Sixth week
 - [x] CLRS Chapter 11
-- [ ] DPV Section 1.5
-- [ ] KT Chapter 13 (Section 13.6)
-- [ ] SW Section 3.4, 3.5
+- [x] DPV Section 1.5
+- [x] KT Chapter 13 (Section 13.6)
+- [x] SW Section 3.4, 3.5
 
 
 

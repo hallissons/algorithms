@@ -2,6 +2,7 @@ package br.com.studies.algorithms;
 
 import br.com.studies.algorithms.Node.NodeColor;
 
+//TODO Implement rank + order statistics
 @SuppressWarnings("rawtypes")
 public class TreeRB extends TreeBST {
 
@@ -31,6 +32,10 @@ public class TreeRB extends TreeBST {
 		// put x on y’s left
 		y.setLeft(x);
 		x.setParent(y);
+
+		//FIXME Not computing the right n for each node
+		// y.setN(x.getN());
+		// x.setN(size(x.getLeft()) + size(x.getRight()) + 1);
 	}
 
 	private void rotateRight(Node x) {
@@ -58,14 +63,43 @@ public class TreeRB extends TreeBST {
 		// put x on y’s right
 		y.setRight(x);
 		x.setParent(y);
+
+		//FIXME Not computing the right n for each node
+		// y.setN(x.getN());
+		// x.setN(size(x.getLeft()) + size(x.getRight()) + 1);
 	}
 
-	public Node insert(Comparable data) {
-		Node z = super.insert(data);
+	public Node put(Comparable data) {
+		Node y = null;
+		Node z = new Node(data);
+		Node x = tree.getRoot();
+
+		while (x != null) {
+			y = x;
+			if (z.getData().compareTo(x.getData()) < 0) {
+				x = x.getLeft();
+			} else {
+				x = x.getRight();
+			}
+			//y.setN(1 + size(y.getLeft()) + size(y.getRight()));
+		}
+		z.setParent(y);
+
+		// Tree is empty
+		if (y == null) {
+			tree.setRoot(z);
+			//z.setN(1);
+			return z;
+		} else if (z.getData().compareTo(y.getData()) < 0) {
+			y.setLeft(z);
+		} else {
+			y.setRight(z);
+		}
 		z.setLeft(null);
 		z.setRight(null);
 		z.setColor(NodeColor.RED);
 		insertFixup(z);
+		
 		return z;
 	}
 
@@ -119,9 +153,9 @@ public class TreeRB extends TreeBST {
 
 			}
 		}
-		size--;
 	}
 
+	//TODO Implement null safe checker for each operation
 	private void deleteFixup(Node x) {
 		while (!tree.getRoot().equals(x) && NodeColor.BLACK.equals(x.getColor())) {
 			if (x.equals(x.getParent().getLeft())) {
@@ -179,11 +213,12 @@ public class TreeRB extends TreeBST {
 		x.setColor(NodeColor.BLACK);
 	}
 
+	//TODO Implement null safe checker for each operation
 	private void insertFixup(Node z) {
-		while (z.getParent() != null && NodeColor.RED.equals(z.getParent().getColor())) {
+		while (z.getParent() != null && NodeColor.RED.equals(colorOf(z.getParent()))) {
 			if (z.getParent().equals(z.getParent().getParent().getLeft())) {
 				Node y = z.getParent().getParent().getRight();
-				if (NodeColor.RED.equals(y.getColor())) {
+				if (NodeColor.RED.equals(colorOf(y))) {
 					z.getParent().setColor(NodeColor.BLACK);
 					y.setColor(NodeColor.BLACK);
 					z.getParent().getParent().setColor(NodeColor.RED);
@@ -200,7 +235,7 @@ public class TreeRB extends TreeBST {
 
 			} else {
 				Node y = z.getParent().getParent().getLeft();
-				if (y != null && NodeColor.RED.equals(y.getColor())) {
+				if (y != null && NodeColor.RED.equals(colorOf(y))) {
 					z.getParent().setColor(NodeColor.BLACK);
 					y.setColor(NodeColor.BLACK);
 					z.getParent().getParent().setColor(NodeColor.RED);
@@ -216,6 +251,7 @@ public class TreeRB extends TreeBST {
 				}
 			}
 		}
+		//tree.getRoot().setN(size(tree.getRoot().getLeft()) + size(tree.getRoot().getRight()) + 1);
 		tree.getRoot().setColor(NodeColor.BLACK);
 	}
 

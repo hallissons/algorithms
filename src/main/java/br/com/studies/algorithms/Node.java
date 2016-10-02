@@ -7,10 +7,12 @@ public class Node {
 	private Node right;
 	private NodeColor color;
 	private Comparable data;
+	private int n;
 
 	public Node(Comparable data) {
 		this.data = data;
 		this.color = NodeColor.BLACK;
+		this.n = 1;
 	}
 
 	public Node getParent() {
@@ -51,6 +53,14 @@ public class Node {
 
 	public void setColor(NodeColor color) {
 		this.color = color;
+	}
+
+	public int getN() {
+		return n;
+	}
+
+	public void setN(int n) {
+		this.n = n;
 	}
 
 	@Override

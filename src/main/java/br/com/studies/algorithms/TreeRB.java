@@ -1,6 +1,7 @@
 package br.com.studies.algorithms;
 
-import br.com.studies.algorithms.Node.NodeColor;
+import br.com.studies.algorithms.domain.tree.Node;
+import br.com.studies.algorithms.domain.tree.NodeColor;
 
 //TODO Implement rank + order statistics
 @SuppressWarnings("rawtypes")

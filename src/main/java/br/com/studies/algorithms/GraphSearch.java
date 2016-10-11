@@ -7,6 +7,11 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import br.com.studies.algorithms.domain.graph.Component;
+import br.com.studies.algorithms.domain.graph.Graph;
+import br.com.studies.algorithms.domain.graph.Vertex;
+import br.com.studies.algorithms.domain.graph.VisitedVertex;
+
 public class GraphSearch {
 	private final Map<Vertex, VisitedVertex> visitedVertexMap;
 	private final List<VisitedVertex> visited;

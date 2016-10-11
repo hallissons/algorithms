@@ -1,5 +1,8 @@
 package br.com.studies.algorithms;
 
+import br.com.studies.algorithms.domain.tree.Node;
+import br.com.studies.algorithms.domain.tree.Tree;
+
 @SuppressWarnings("rawtypes")
 public class TreeBST {
 	protected final Tree tree;

@@ -1,4 +1,4 @@
-#Study notes for algorithm design analysis 1
+#Study notes for algorithm design analysis 1 & 2
 
 ##Big Oh notation
 When analyzing an algorithm is very hard to make an accurate assumption on how long a program will take to run. To do a proper analysis one has to take all variables into account: hardware used to execute the algorithm, cost of each step on that hardware, input size, etc.
@@ -52,25 +52,25 @@ Recursively divides an array/list into two different lists splitted in half comb
 **Key points:**
 - It consumes more resources than other sorting algorithms because of the third list created on the merge step.
 - It has a very good stability since it's best case is same of it's worst case (Theta(n(log n))).
-- Wrong implementations of the merge step leads to O(n2).
+- Wrong implementations of the merge step leads to O(nˆ2).
 
 Example: http://algs4.cs.princeton.edu/22mergesort/
 
 ### Quick sort:
 
-It chooses an arbitrary element called pivot and iterates through the array/list putting all the elements greater than the pivot after the pivot and the elements which are lesser then the pivot before the pivot, creating a partition. Each partition returns the index of the last swap made by the algorithm containing the current position of the pivot. The complexity of the quick sort has an average of O(n (log n)) but it's worse case can be O(nˆ2). Introduction to algorithms uses the simplest Lomuto's partition approach, which does more comparisons and can lead to O(nˆ2) when the array is already sorted. Hoare's partition approach (original one) on the other hand, uses a more complex approach but it also reduces the amount of comparisons.
+It chooses an arbitrary element called pivot and iterates through the array/list putting all the elements greater than the pivot after the pivot and the elements which are lesser then the pivot before the pivot, creating a partition. Each partition returns the index of the last swap made by the algorithm containing the current position of the pivot. The complexity of the quick sort has an average of O(n (log n)) but it's worse case can be O(nˆ2). Introduction to algorithms uses the simplest Lomuto's partition approach, which does more comparisons and can lead to O(nˆ2) when the array is already sorted. Hoare's partition approach (original one) on the other hand, uses a more complex algorithm but it also reduces the amount of comparisons.
 
 **Key points:**
 - It consumes less resources if compared with merge sort.
 - It's very simple to implement.
-- Several pivot strategies can be used and each one can lead to different results. Bad pivot strategies can take the average case to O(n2).
+- Several pivot strategies can be used and each one can lead to different results. Bad pivot strategies can take the average case to O(nˆ2).
 - Common pivot strategies: first element, last element, middle of three (first, mid, last), random. A random pivot choice is preferable due to the fact that long runs increases the occurrences of the average cases.
 
 Example: http://algs4.cs.princeton.edu/23quicksort/
 
 ### Insertion sort:
 
- Iterates through an array/list, simulating the insertion the elements in a sorted order (same comparison with a hand full of cards and a second had with no cards), each iteration chooses an element and inserts it to the right place. It's worst case is O(n^2) but it's best case is O(n) and it occurs when the array is already sorted.
+ Iterates through an array/list, simulating the insertion the elements in a sorted order (same comparison with a hand full of cards and a second had with no cards), each iteration chooses an element and inserts it to the right place. It's worst case is O(nˆ2) but it's best case is O(n) and it occurs when the array is already sorted.
 
 **Key points:**
 - The number of comparisons can be very high due to the worst case (inverted array/list).
@@ -81,7 +81,7 @@ Example: http://algs4.cs.princeton.edu/23quicksort/
 
 ### Karatsuba multiplication
 
-One of the most used examples to exercise divide-and-conquer algorithms. The current third grade approach to multiply numbers has O(n2) complexity and Karatsuba's has only O(n (log3)). It divides the multiplying elements in half, applying the following formula to each pair: xy = a # B^2m + b # B^m + c. This current formula also takes O(n^2) but Karatsuba had the brilliant idea to replace b by the following formula: b = (x1 + x2)(y1 + y2) - a - c;
+One of the most used examples to exercise divide-and-conquer algorithms. The current third grade approach to multiply numbers has O(nˆ2) complexity and Karatsuba's has only O(n (log3)). It divides the multiplying elements in half, applying the following formula to each pair: xy = a # B^2m + b # B^m + c. This current formula also takes O(nˆ2) but Karatsuba had the brilliant idea to replace b by the following formula: b = (x1 + x2)(y1 + y2) - a - c;
 
 **Key points:**
 - Uses math to improve the current third grade multiplication algorithm.
@@ -146,7 +146,6 @@ The objective of the deterministic selection is the same of linear time selectio
 
 The master method cannot be used to measure the complexity due to the fact that the recursions (sub-problems) have different sizes.
 
-
 ## Sorting problems
 
 A list cannot be sorted with a lower bound better than Omega(n (log n)) using sort comparison algorithms. To improve the running time, we need to know more information on the data: bucket sort, radix sort, counting sort.
@@ -155,7 +154,7 @@ A list cannot be sorted with a lower bound better than Omega(n (log n)) using so
 
 A graph is a set of vertices connected by edges, which can be used to represent and solve several types of computational problems: computer networks, social networks, image processing, etc. A graph can be directed or undirected.
 
-- **Common notations:** (V,E) where V = vertices and E = egdes; (N,M) where N = vertices and M = edges
+- **Common notations:** (V,E) where V = vertices and E = edges; (N,M) where N = vertices and M = edges
 - **Common ways to represent a graph:** Adjacency lists and matrices.
 
 ### Adjacency lists
@@ -196,9 +195,9 @@ A graph can have multiple min cuts (e.g. a tree with vertices has (n-1) minimum 
 
 ### Breadth-First Search (BFS)
 
-Basic type of algorithm used to search elements in a graph, finding all the connected elements. It has running time of O(n+m) and has several motivations:
+Basic type of algorithm used to search elements in a graph built in top of a queue, finding all the connected elements. It has running time of O(n+m) and has several motivations:
 
-- Find bottleneks in a physical computer network.
+- Find bottleneeks in a physical computer network.
 - Compute the shortest path between two elements e.g.: "The Bacon number". But only if each edge weight is equal to "1".
 - Compute a path based on a sequence of decisions.
 
@@ -220,14 +219,14 @@ Used when a node has precedence from another, a very common example is a list of
 
 ### Strong Connected Components
 
-A strong connected component is a directed graph composed by a pair of vertices which can be reachable from one to another (v <-> f). A graph can be decomposed in strong connected components running dfs routine twice on graph, where one of the runs will take a transposed version of the graph (inverted edges) named: Kosraju's two-pass algorithm. Another way to discover a component is using Tarjan's algorithm. 
+A strong connected component is a directed graph composed by a pair of vertices which can be reachable from one to another (v <-> f). A graph can be decomposed in strong connected components running DFS routine twice on graph, where one of the runs will take a transposed version of the graph (inverted edges) named: Kosraju's two-pass algorithm. Another way to discover a component is using Tarjan's algorithm. 
 
 Directed acyclic graphs = dags
 
 ### Kosaraju's Two-Pass Algorithm
 
-1. Let Grev denote the graph G after the orientation of all arcs have been reversed.
-2. Run the DFS-Loop subroutine on Grev, processing vertices according to the given order, to obtain a
+1. Let G(rev) denote the graph G after the orientation of all arcs have been reversed.
+2. Run the DFS-Loop subroutine on G(rev), processing vertices according to the given order, to obtain a
 finishing time f (v) for each vertex v E V.
 3. Run the DFS-Loop subroutine on G, processing vertices in decreasing order of f(v), to assign a leader
 to each vertex v E V.
@@ -270,7 +269,7 @@ Used to compute the shortest path between two vertices using weighted edges. The
 ```
 
 - Its based on BFS's principles.
-- The naive implementation takes O(m*n), but it can be improved using the correct data structure (e.g.: heap).
+- The naive implementation takes O(m*n), but it can be improved using the correct data structure (e.g.: heap/priority queues) which takes the running time down to O(m) + the priority queues operations for each Ith element.
 - Lines 18-20 implements a technique called "relaxing" where each vertex is relaxed when a new path is found navigating through the vertices.
 - The algorithm can be optimized using fibonacci heap, topological sort or priority queues. When the optimization is done using fibonacci heap, the running time can be O(m log(n)).
 - The longest path can be found inverting the initialization to -INFINITY and inverting the logic described on the relaxing steps.
@@ -279,7 +278,7 @@ Used to compute the shortest path between two vertices using weighted edges. The
 
 Several jobs are scheduled to run in parallel using executors but some of them has other jobs as precedence. This problem can be solved using the "critical path method", which is equivalent to the longest-path problem
 
-### Bellman Ford algorithm
+### Bellman & Ford algorithm
 
 Algorithm used on general cases when the graph has cycles and edge weights can be negative.
 
@@ -313,7 +312,7 @@ A container of objects that have keys. It supports the following operations:
 
 Heap data structures can be used on several applications:
 
-- **Sorting:** Fast way to compute the repeated minimum, can be used to speed up selection sort selecting the minimum on each iteration, which takes the selection sort from O(n^2) to O(n log n), which can be also called as "Heap sort" with some modifications. Since this is still a comparison based sorting, it cannot be better than O(n log n). A well implemented quicksort/mergesort can still be better.
+- **Sorting:** Fast way to compute the repeated minimum, can be used to speed up selection sort selecting the minimum on each iteration, which takes the selection sort from O(nˆ2) to O(n log n), which can be also called as "Heap sort" with some modifications. Since this is still a comparison based sorting, it cannot be better than O(n log n). A well implemented quicksort/mergesort can still be better.
 
 - **Event Manager:** A collection of events can take advantage on heap data structure extracting the smallest timestamp.
 
@@ -339,6 +338,8 @@ Its a BST with an extra bit to record the "color" of the node (red or black). Th
 3. Every leaf (NIL) is black.
 4. If a node is red, then both its children are black.
 5. For each node, all simple paths from the node to descendant leaves contain the same number of black nodes.
+
+A RB Tree must hold all the properties while inserting/deleting nodes in order to provide  O(log n) on the operations.
 
 ### Hash table
 
@@ -378,7 +379,7 @@ A[h(x)]
 
 - **Open Addressing:** Uses all slots on the hash table instead of storing a linked list for each slot. This is done through "probing", where a slot is evaluated and if it is empty, the key is inserted there, otherwise it is inserted on a different slot where the probing is incremented using the following strategies: linear, quadraditic and double hashing
 
-- Its pretty easy bad hash functions :)
+- Its pretty easy to create bad hash functions :)
 - Terrible solution: h(x) = first 3 digits of a phone number. In that case all the "bay area" will go to the same bucket
 - Mediocre solution: h(x) = last 3 digits of x, multiples of power of 2.
 
@@ -398,6 +399,32 @@ Lightweight version of hash table with following characteristics:
 
 Ingredients: Array of n bits (n/|S| = # of bits per object in data set S)
 
+## Introduction to greedy algorithms
+
+Algorithm technique which greedly evaluates each "element" and chooses the best decision at the time. A greedy algorithm doesn't revisit a solution twice and it's not correct all the times.
+
+### The optimal cache algorithm
+
+A solution that provides a faster container to get the data in a faster way than getting the data on the usual way, e.g.: reading the disk vs RAM access. The algorithm is optimal when it minimizes the cache misses. A greedy algorithm always makes the choice that looks best at the moment. That is, it makes a locally optimal choice in the hope that this choice will lead to a globally optimal solution
+
+- The furthest-in-future algorithm
+	When di needs to be brought into the cache, evict the item that is needed the farthest into the future
+- LRU algorithm: Least recently used
+
+**Memory Hierarchy:** There is a small amount of data that can be accessed very quickly, and a large amount of data that requires more time to access; and you must decide which pieces of data to have close at hand.
+
+### Kruskal’s minimum spanning tree algorithm
+
+Given a graph G, create a new Gx which repeatedly add the next lightest edge from G that doesn’t produce a cycle.
+
+### Prim's algorithm
+
+Given a graph G, we start with a root node s and try to greedily grow a tree from s outward. At each step, we simply add the node that can be attached as cheaply as possibly to the partial tree we already have.
+
+### Reverse-Delete Algorithm
+
+Given a graph G, deletes edges on the decreasing cost
+
 ## Problems
 
 ### 2-SUM Problem
@@ -408,6 +435,39 @@ Given an array A and a integer T, find the two elements which sums up to T.
 - Better: Sort the array and for each element, find its complement based on T = O(n log n) -> O(n log n) to sort the array + O(log n) to find a complement for each element + O(n).
 - Even better: Use the hash table to lookup for elements, the running time will decrease to O(n).
 
+### Scheduling
+
+A shared resource (e.g. a processor) is used to execute many jobs (e.g.: processes). In what order should we sequence the jobs?
+
+- weight wj: priority
+- height lj: size
+
+The output will be the sequence of the jobs
+
+Example: 3 jobs
+
+l1=1, l2=2, l3=3
+
+
+[#3] = 6
+[#2] = 3
+[#1] = 1
+
+The objective is minimize the weighted sum of completion times.
+
+### Activity-selection problem
+
+We wish to select a maximum-size subset of mutually compatible activities. We assume that the activities are sorted in monotonically increasing order of finish time:
+
+f1 <=  f2 <= f3 <= ... <= fn-1 <=  fn
+
+### Minimum spanning trees
+
+Suppose you are asked to network a collection of computers by linking selected pairs of them. This translates into a graph problem in which nodes are computers, undirected edges are potential links, and the goal is to pick enough of these edges that the nodes are connected. But this is not all; each link also has a maintenance cost, reflected in that edge’s weight. What is the cheapest possible network?
+
+- Kruskal’s Algorithm
+- 
+
 ## Books
 
 - CLRS: Cormen, Leiserson, Rivest, and Stein, Introduction to Algorithms (3rd edition)
@@ -417,11 +477,13 @@ Given an array A and a integer T, find the two elements which sums up to T.
 
 ## Study progress
 
+## Module 1
+
 ### First week
-- [x] CLRS: Chapter 2, 3, and 4 (through Section 4.2), and Sections 28.1 and 33.4
-- [x] DPV: Sections 0.3, 2.1, 2.3, 2.5
-- [x] KT: Sections 2.1, 2.2, 2.4, 5.1, and 5.3-5.5
-- [x] SW: Sections 1.4 and 2.2
+- [x] CLRS Chapter 2, 3, and 4 (through Section 4.2), and Sections 28.1 and 33.4
+- [x] DPV Sections 0.3, 2.1, 2.3, 2.5
+- [x] KT Sections 2.1, 2.2, 2.4, 5.1, and 5.3-5.5
+- [x] SW Sections 1.4 and 2.2
 
 ### Second week
 - [x] CLRS Chapter 4 (Sections 4-6) and Chapter 7
@@ -451,6 +513,14 @@ Given an array A and a integer T, find the two elements which sums up to T.
 - [x] DPV Section 1.5
 - [x] KT Chapter 13 (Section 13.6)
 - [x] SW Section 3.4, 3.5
+
+## Module 2
+
+### First week
+- [ ] CLRS Chapter 16 (Sections 1 and 2) and Chapter 23
+- [ ] KT Sections 4.1, 4.2, 4.3, and 4.5
+- [ ] DPV Sections 5.1.1, 5.1.2, and 5.1.5
+- [ ] SW Section 4.3
 
 
 

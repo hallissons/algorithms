@@ -10,6 +10,16 @@ public class Graph {
 
 	private final Map<String, Vertex> vertices = new HashMap<String, Vertex>();
 	private final List<Edge> edges = new ArrayList<Edge>();
+	private final boolean directed;
+	
+	public Graph() {
+		this(false);
+	}
+
+	public Graph(boolean directed) {
+		super();
+		this.directed = directed;
+	}
 
 	public Map<String, Vertex> getVertices() {
 		return vertices;
@@ -30,6 +40,10 @@ public class Graph {
 			addVertex(v);
 		}
 		return v;
+	}
+	
+	public boolean isDirected() {
+		return directed;
 	}
 
 	@Override
@@ -53,22 +67,21 @@ public class Graph {
 			// Each other column is an end point from the first column
 			for (int i = 1; i < newEntry.length; i++) {
 				String adj = newEntry[i];
-				String[] wheighted = adj.split("\\,");
-				double wheight = 0.0d;
-				if(wheighted.length > 1){
-					adj = wheighted[0];
-					wheight = Double.parseDouble(wheighted[1]);
+				String[] weighted = adj.split("\\,");
+				double weight = 0.0d;
+				if(weighted.length > 1){
+					adj = weighted[0];
+					weight = Double.parseDouble(weighted[1]);
 				}
-				
 				Vertex vAdj = gr.getVertex(adj.trim());
 				Edge edge = v.getEdgeTo(vAdj);
 				if (edge == null) {
-					edge = new Edge(v, vAdj, wheight);
+					edge = new Edge(v, vAdj, weight, gr);
 					v.addEdge(edge);
-					if (!directed) {
-						vAdj.addEdge(edge);
-					}
 					gr.getEdges().add(edge);
+				}
+				if (!directed) {
+					vAdj.addEdge(edge);
 				}
 			}
 		}
@@ -82,7 +95,7 @@ public class Graph {
 			gRev.addVertex(vRev);
 			for (Edge e : v.getEdges()) {
 				Vertex vRevTo = gRev.getVertex(e.getTo().getLabel());
-				Edge eRev = new Edge(vRevTo, vRev);
+				Edge eRev = new Edge(vRevTo, vRev, gRev);
 				vRevTo.addEdge(eRev);
 				gRev.getEdges().add(eRev);
 			}
@@ -97,5 +110,4 @@ class VertexComparator implements Comparator<Integer> {
 	public int compare(Integer label, Integer label2) {
 		return label.compareTo(label2);
 	}
-
 }

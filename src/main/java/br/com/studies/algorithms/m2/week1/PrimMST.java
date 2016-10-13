@@ -1,36 +1,34 @@
 package br.com.studies.algorithms.m2.week1;
 
-import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Map;
-import java.util.PriorityQueue;
+import java.util.Queue;
+import java.util.Set;
 
 import br.com.studies.algorithms.domain.graph.Edge;
 import br.com.studies.algorithms.domain.graph.Graph;
 import br.com.studies.algorithms.domain.graph.MST;
 import br.com.studies.algorithms.domain.graph.Vertex;
 import br.com.studies.algorithms.domain.graph.VertexDistance;
+import br.com.studies.algorithms.utils.IndexMinPQ;
 
 public class PrimMST implements MST {
 
-	private Map<Vertex, VertexDistance> distTo;
+	private Map<Integer, VertexDistance> distTo;
 	private Map<Vertex, Edge> edgeTo;
-	private Map<Vertex, Boolean> marked;
+	private Set<Integer> marked;
 	private Graph graph;
-	private PriorityQueue<VertexDistance> pq;
+	private IndexMinPQ<Double> pq;
 
 	public PrimMST(Graph graph) {
 		this.graph = graph;
 	}
 
-	public Map<Vertex, VertexDistance> getDistTo() {
-		return distTo;
-	}
-
 	@Override
-	public Collection<Edge> getEdges() {
-		Collection<Edge> mst = new LinkedList<>();
+	public Queue<Edge> getEdges() {
+		Queue<Edge> mst = new LinkedList<>();
 		for (Edge e : edgeTo.values()) {
 			mst.add(e);
 		}
@@ -49,43 +47,49 @@ public class PrimMST implements MST {
 	public void run(Vertex ini) {
 		distTo = new HashMap<>();
 		edgeTo = new HashMap<>();
-		marked = new HashMap<>();
-		pq = new PriorityQueue<>();
+		marked = new HashSet<>();
+		pq = new IndexMinPQ<>(graph.getVertices().size());
 
+		int i = 0;
 		for (Vertex v : graph.getVertices().values()) {
-			distTo.put(v, new VertexDistance(v, Double.POSITIVE_INFINITY));
+			v.setIndex(i);
+			distTo.put(i, new VertexDistance(v, Double.POSITIVE_INFINITY));
+			i++;
 		}
 
-		for (Vertex v : graph.getVertices().values()) {
-			if (!marked.containsKey(v)) {
-				prim(v);
+		for (VertexDistance vd : distTo.values()) {
+			if (!marked.contains(vd.getVertex().getIndex())) {
+				prim(vd);
 			}
 		}
 	}
 
-	private void prim(Vertex v) {
-		VertexDistance vd = distTo.get(v);
-		vd.setDistance(0.0d);
-		pq.add(vd);
+	private void prim(VertexDistance vd) {
+		pq.insert(vd.getVertex().getIndex(), vd.getDistance());
 
 		while (!pq.isEmpty()) {
-			VertexDistance x = pq.poll();
-			scan(x);
+			Integer index = pq.delMin();
+			scan(distTo.get(index));
 		}
 	}
 
 	private void scan(VertexDistance vd) {
-		marked.put(vd.getVertex(), true);
+		marked.add(vd.getVertex().getIndex());
 
 		for (Edge e : vd.getVertex().getEdges()) {
-			VertexDistance w = distTo.get(e.getTo());
-			if (marked.containsKey(w.getVertex())) {
+			VertexDistance w = distTo.get(e.getOppositeVertex(vd.getVertex()).getIndex());
+			if (marked.contains(w.getVertex().getIndex())) {
 				continue;
 			}
 			if (e.getWeight() < w.getDistance()) {
 				edgeTo.put(w.getVertex(), e);
 				w.setDistance(e.getWeight());
-				pq.add(w);
+
+				if (pq.contains(w.getVertex().getIndex())) {
+					pq.decreaseKey(w.getVertex().getIndex(), w.getDistance());
+				} else {
+					pq.insert(w.getVertex().getIndex(), w.getDistance());
+				}
 			}
 		}
 	}

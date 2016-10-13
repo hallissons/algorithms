@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import br.com.studies.algorithms.domain.graph.Edge;
@@ -19,7 +18,6 @@ import br.com.studies.algorithms.utils.FileUtils;
 public class MinCutTests {
 
 	@Test
-	@Ignore
 	public void testMinCutBigGraph() {
 		MinCut minCut = new MinCut();
 		List<String> lines = FileUtils.readAllLines("br/com/studies/algorithms/m1/week3/graph_1.txt");
@@ -29,7 +27,7 @@ public class MinCutTests {
 
 		int size = lines.size();
 		int min = size;
-		int iter = size * size;
+		int iter = size * 2;
 
 		for (int i = 0; i < iter; i++) {
 			Graph gr = Graph.build(lines);

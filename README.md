@@ -419,7 +419,7 @@ Given a graph G, create a new Gx which repeatedly add the next lightest edge fro
 
 ### Prim's algorithm
 
-Given a graph G, we start with a root node s and try to greedily grow a tree from s outward. At each step, we simply add the node that can be attached as cheaply as possibly to the partial tree we already have.
+Given a graph G, we start with a root node s and try to greedily grow a tree from s outward. At each step, we simply add the node that can be attached as cheaply as possibly to the partial tree we already have. The algorithm runs in O(m*n) time, which can be improved using Heaps, improving the running time to O(m log n).
 
 ### Reverse-Delete Algorithm
 
@@ -517,10 +517,10 @@ Suppose you are asked to network a collection of computers by linking selected p
 ## Module 2
 
 ### First week
-- [ ] CLRS Chapter 16 (Sections 1 and 2) and Chapter 23
-- [ ] KT Sections 4.1, 4.2, 4.3, and 4.5
-- [ ] DPV Sections 5.1.1, 5.1.2, and 5.1.5
-- [ ] SW Section 4.3
+- [x] CLRS Chapter 16 (Sections 1 and 2) and Chapter 23
+- [x] KT Sections 4.1, 4.2, 4.3, and 4.5
+- [x] DPV Sections 5.1.1, 5.1.2, and 5.1.5
+- [x] SW Section 4.3
 
 
 

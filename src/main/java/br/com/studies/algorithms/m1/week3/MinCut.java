@@ -21,7 +21,8 @@ public class MinCut {
 		Random rnd = new Random();
 
 		while (gr.getVertices().size() > 2) {
-			Edge edge = gr.getEdges().remove(rnd.nextInt(gr.getEdges().size()));
+			int index = gr.getEdges().size();
+			Edge edge = gr.getEdges().remove(rnd.nextInt(index));
 			Vertex v1 = cleanVertex(gr, edge.getFrom(), edge);
 			Vertex v2 = cleanVertex(gr, edge.getTo(), edge);
 			// contract

@@ -8,6 +8,7 @@
 
 package br.com.studies.algorithms.utils;
 
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -302,6 +303,11 @@ public class IndexMinPQ<Key extends Comparable<Key>> implements Iterable<Integer
 		sink(index);
 		keys[i] = null;
 		qp[i] = -1;
+	}
+
+	@Override
+	public String toString() {
+		return "IndexMinPQ [keys=" + Arrays.toString(keys) + "]";
 	}
 
 	/***************************************************************************

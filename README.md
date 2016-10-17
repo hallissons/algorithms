@@ -465,8 +465,9 @@ f1 <=  f2 <= f3 <= ... <= fn-1 <=  fn
 
 Suppose you are asked to network a collection of computers by linking selected pairs of them. This translates into a graph problem in which nodes are computers, undirected edges are potential links, and the goal is to pick enough of these edges that the nodes are connected. But this is not all; each link also has a maintenance cost, reflected in that edge’s weight. What is the cheapest possible network?
 
-- Kruskal’s Algorithm
-- 
+Kruskal’s Algorithm
+
+TODO 
 
 ## Books
 

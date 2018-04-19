@@ -5,6 +5,8 @@ public class WeightedActivity {
 	private final int id;
 	private final Integer weight;
 	private final Integer length;
+	private Float rt;
+	private Integer di;
 
 	public WeightedActivity(int id, Integer weight, Integer length) {
 		super();
@@ -26,11 +28,17 @@ public class WeightedActivity {
 	}
 
 	public Integer difference() {
-		return weight - length;
+		if (di == null) {
+			di = weight - length;
+		}
+		return di;
 	}
 
 	public Float ratio() {
-		return Float.valueOf(weight) / Float.valueOf(length);
+		if (rt == null) {
+			rt = Float.valueOf(weight) / Float.valueOf(length);
+		}
+		return rt;
 	}
 
 	@Override

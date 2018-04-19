@@ -1,7 +1,6 @@
-package br.com.studies.algorithms.m2.week1;
+package br.com.studies.algorithms.m2.week2;
 
 import java.util.List;
-import java.util.Queue;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -11,77 +10,79 @@ import br.com.studies.algorithms.domain.graph.Graph;
 import br.com.studies.algorithms.domain.graph.Vertex;
 import br.com.studies.algorithms.utils.FileUtils;
 
-public class PrimMSTTests {
-	
+public class KruskalMSTTests {
 	@Test
-	public void testRunBasicPrim(){
+	public void testRunBasicKruskal(){
 		List<String> lines = FileUtils.readAllLines("mst1.txt");
 		Graph g = Graph.build(lines);
 		
-		PrimMST prim = new PrimMST(g);
+		KruskalMST prim = new KruskalMST(g);
 		prim.run(g.getVertex("a"));
 		
 		Assert.assertEquals(7d, prim.getWeight(), 0d);
 	}
 	
 	@Test
-	public void testRunBasicPrimCormen(){
+	public void testRunBasicKruskalCormen(){
 		List<String> lines = FileUtils.readAllLines("mst_cormen.txt");
 		Graph g = Graph.build(lines);
 		
-		PrimMST prim = new PrimMST(g);
+		KruskalMST prim = new KruskalMST(g);
 		prim.run(g.getVertex("a"));
-		
-		Queue<Edge> edges = prim.getEdges();
-		while (!edges.isEmpty()) {
-			Edge e = edges.poll();
-			System.out.println(e);
-		}
 		
 		Assert.assertEquals(37d, prim.getWeight(), 0d);
 	}
 	
-	
 	@Test
-	public void testRunPrim1(){
-		Graph g = buildGraph("primsmst_1.txt");
+	public void testRunKruskal1(){
+		Graph g = buildGraph("kruskalmst_1.txt");
 		
-		PrimMST prim = new PrimMST(g);
+		KruskalMST prim = new KruskalMST(g);
 		prim.run(g.getVertices().values().iterator().next());
 		
 		Assert.assertEquals(4d, prim.getWeight(), 0d);
 	}
 	
 	@Test
-	public void testRunPrim2(){
-		Graph g = buildGraph("primsmst_2.txt");
+	public void testRunKruskal2(){
+		Graph g = buildGraph("kruskalmst_2.txt");
 		
-		PrimMST prim = new PrimMST(g);
+		KruskalMST prim = new KruskalMST(g);
 		prim.run(g.getVertices().values().iterator().next());
 		
 		Assert.assertEquals(16d, prim.getWeight(), 0d);
 	}
 	
 	@Test
-	public void testRunPrim3(){
-		Graph g = buildGraph("primsmst_3.txt");
+	public void testRunKruskal3(){
+		Graph g = buildGraph("kruskalmst_3.txt");
 		
-		PrimMST prim = new PrimMST(g);
+		KruskalMST prim = new KruskalMST(g);
 		prim.run(g.getVertices().values().iterator().next());
 		
 		Assert.assertEquals(-3d, prim.getWeight(), 0d);
 	}
 	
 	@Test
-	public void testRunPrim4(){
+	public void testRunKruskal4(){
 		Graph g = buildGraph("edges.txt");
 		
-		PrimMST prim = new PrimMST(g);
+		KruskalMST prim = new KruskalMST(g);
 		prim.run(g.getVertices().values().iterator().next());
 		
 		Assert.assertEquals(-3612829d, prim.getWeight(), 0d);
 	}
 	
+	
+	@Test
+	public void testRunKruskal5(){
+		Graph g = buildGraph("edges.txt");
+		
+		KruskalMSTUF prim = new KruskalMSTUF(g);
+		prim.run(g.getVertices().values().iterator().next());
+		
+		Assert.assertEquals(-3612829d, prim.getWeight(), 0d);
+	}
 	
 	private Graph buildGraph(String name){
 		List<String> lines = FileUtils.readAllLines(""+ name);

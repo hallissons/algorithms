@@ -20,7 +20,7 @@ public class MinCutTests {
 	@Test
 	public void testMinCutBigGraph() {
 		MinCut minCut = new MinCut();
-		List<String> lines = FileUtils.readAllLines("br/com/studies/algorithms/m1/week3/graph_1.txt");
+		List<String> lines = FileUtils.readAllLines("graphs/graph_1.txt");
 		final int minimum = 17;
 
 		Map<Integer, Integer> statistics = new LinkedHashMap<Integer, Integer>();
@@ -48,7 +48,7 @@ public class MinCutTests {
 	@Test
 	public void testMinCut() throws URISyntaxException, IOException {
 		final int minimum = 1;
-		List<String> lines = FileUtils.readAllLines("br/com/studies/algorithms/m1/week3/graph_small_test.txt");
+		List<String> lines = FileUtils.readAllLines("graphs/graph_small_test.txt");
 		MinCut minCut = new MinCut();
 		
 		Graph gr = Graph.build(lines);

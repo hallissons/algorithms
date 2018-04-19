@@ -417,6 +417,18 @@ A solution that provides a faster container to get the data in a faster way than
 
 Given a graph G, create a new Gx which repeatedly add the next lightest edge from G that doesn’t produce a cycle.
 
+```
+sort edges in order of increasing cost	(O (m log n))
+
+T = 0
+for i=1 to m
+	if T u[i] has no cycles
+		add i to T
+		
+return T
+
+```
+
 ### Prim's algorithm
 
 Given a graph G, we start with a root node s and try to greedily grow a tree from s outward. At each step, we simply add the node that can be attached as cheaply as possibly to the partial tree we already have. The algorithm runs in O(m*n) time, which can be improved using Heaps, improving the running time to O(m log n).
@@ -522,6 +534,12 @@ TODO
 - [x] KT Sections 4.1, 4.2, 4.3, and 4.5
 - [x] DPV Sections 5.1.1, 5.1.2, and 5.1.5
 - [x] SW Section 4.3
+
+### Second week
+- [ ] CLRS Chapter 16 (Section 3), Chapter 21, and Chapter 23 (Section 2)
+- [ ] DPV Sections 5.1.3, 5.1.4, and 5.2
+- [ ] KT Sections 4.5-4.8
+- [ ] SW Sections 1.5, 4.3, and 5.5
 
 
 

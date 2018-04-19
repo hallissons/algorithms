@@ -19,7 +19,7 @@ public class DijkstraTests {
 	
 	@Test
 	public void testRunBasicDijkstraCormen() {
-		List<String> lines = FileUtils.readAllLines("br/com/studies/algorithms/m1/week5/cormen_test.txt");
+		List<String> lines = FileUtils.readAllLines("graphs/cormen_test.txt");
 		Graph gr = Graph.build(lines, true);
 
 		Vertex s = gr.getVertex("s");
@@ -33,7 +33,7 @@ public class DijkstraTests {
 	
 	@Test
 	public void testRunBasicDijkstraHeap() {
-		List<String> lines = FileUtils.readAllLines("br/com/studies/algorithms/m1/week5/stanford_test.txt");
+		List<String> lines = FileUtils.readAllLines("graphs/stanford_test.txt");
 		Graph gr = Graph.build(lines, true);
 
 		Vertex s = gr.getVertex("s");
@@ -48,7 +48,7 @@ public class DijkstraTests {
 	
 	@Test
 	public void testRunBasicDijkstra() {
-		List<String> lines = FileUtils.readAllLines("br/com/studies/algorithms/m1/week5/stanford_test.txt");
+		List<String> lines = FileUtils.readAllLines("graphs/stanford_test.txt");
 		Graph gr = Graph.build(lines, true);
 
 		Vertex s = gr.getVertex("s");
@@ -63,7 +63,7 @@ public class DijkstraTests {
 	
 	@Test
 	public void testRunBasicDijkstraLongestPath() {
-		List<String> lines = FileUtils.readAllLines("br/com/studies/algorithms/m1/week5/stanford_test.txt");
+		List<String> lines = FileUtils.readAllLines("graphs/stanford_test.txt");
 		Graph gr = Graph.build(lines, true);
 
 		Vertex s = gr.getVertex("s");
@@ -78,7 +78,7 @@ public class DijkstraTests {
 
 	@Test
 	public void testRunBasicDijkstraStanford() {
-		List<String> lines = FileUtils.readAllLines("br/com/studies/algorithms/m1/week5/stanford_test.txt");
+		List<String> lines = FileUtils.readAllLines("graphs/stanford_test.txt");
 		Graph gr = Graph.build(lines, true);
 
 		DijkstraAlgorithm shortPath = new DijkstraAlgorithm(gr);
@@ -89,7 +89,7 @@ public class DijkstraTests {
 
 	@Test
 	public void testRunBasicDijkstra1() {
-		List<String> lines = FileUtils.readAllLines("br/com/studies/algorithms/m1/week5/dijkstra1.txt");
+		List<String> lines = FileUtils.readAllLines("graphs/dijkstra1.txt");
 		Graph gr = Graph.build(lines, true);
 
 		DijkstraAlgorithm shortPath = new DijkstraAlgorithm(gr);
@@ -101,7 +101,7 @@ public class DijkstraTests {
 
 	@Test
 	public void testRunQuiz() {
-		List<String> lines = FileUtils.readAllLines("br/com/studies/algorithms/m1/week5/dijkstraData.txt");
+		List<String> lines = FileUtils.readAllLines("graphs/dijkstraData.txt");
 		Graph gr = Graph.build(lines, true);
 
 		DijkstraAlgorithm shortPath = new DijkstraAlgorithm(gr);

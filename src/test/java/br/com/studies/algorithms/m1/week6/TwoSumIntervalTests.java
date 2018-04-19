@@ -16,7 +16,7 @@ public class TwoSumIntervalTests {
 	
 	@Test
 	public void testBasicInterval(){
-		List<String> entities = FileUtils.readAllLines("br/com/studies/algorithms/m1/week6/algo1-programming_prob-2sum_simple.txt");
+		List<String> entities = FileUtils.readAllLines("algo1-programming_prob-2sum_simple.txt");
 		TwoSumInterval twoSumInterval = new TwoSumInterval(entities, BEGIN_INTER, END_INTER);
 		
 		Assert.assertEquals(0, twoSumInterval.countTarget());
@@ -26,7 +26,7 @@ public class TwoSumIntervalTests {
 	@Test
 	@Ignore
 	public void testInterval(){
-		List<String> entities = FileUtils.readAllLines("br/com/studies/algorithms/m1/week6/algo1-programming_prob-2sum.txt");
+		List<String> entities = FileUtils.readAllLines("algo1-programming_prob-2sum.txt");
 		TwoSumInterval twoSumInterval = new TwoSumInterval(entities, BEGIN_INTER, END_INTER);
 		
 		System.out.println(twoSumInterval.countTarget());

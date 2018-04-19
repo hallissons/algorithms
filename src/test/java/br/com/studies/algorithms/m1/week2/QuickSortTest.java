@@ -28,7 +28,7 @@ public class QuickSortTest {
 	@Before
 	public void setUp() {
 		
-		List<String> objs = FileUtils.readAllLines("br/com/studies/algorithms/m1/week2/numbers-quick-sort.txt");
+		List<String> objs = FileUtils.readAllLines("numbers-quick-sort.txt");
 		unsorted = new ArrayList<>();
 		for (String s : objs) {
 			unsorted.add(Integer.parseInt(s));

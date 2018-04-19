@@ -22,6 +22,4 @@ public class Activity {
 	public String toString() {
 		return "Activity [start=" + start + ", finish=" + finish + "]";
 	}
-	
-	
 }

@@ -14,7 +14,7 @@ public class BasicDFSTests {
 
 	@Test
 	public void testVistAllFromFirstNode() {
-		List<String> lines = FileUtils.readAllLines("br/com/studies/algorithms/m1/week4/graph_small_test.txt");
+		List<String> lines = FileUtils.readAllLines("graphs/graph_small_test2.txt");
 		Graph gr = Graph.build(lines, true);
 
 		BasicDFS bfs = new BasicDFS();

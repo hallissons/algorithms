@@ -15,7 +15,7 @@ public class RecursiveDFSTests {
 
 	@Test
 	public void testVistAllFromFirstNode() {
-		List<String> lines = FileUtils.readAllLines("br/com/studies/algorithms/m1/week4/graph_cormen.txt");
+		List<String> lines = FileUtils.readAllLines("graphs/graph_cormen.txt");
 		Graph gr = Graph.build(lines, true);
 
 		RecursiveDFS rdfs = new RecursiveDFS();
@@ -31,7 +31,7 @@ public class RecursiveDFSTests {
 	
 	@Test
 	public void testVistAllBigGraph() {
-		List<String> lines = FileUtils.readAllLines("br/com/studies/algorithms/m1/week4/graph_1.txt");
+		List<String> lines = FileUtils.readAllLines("graphs/graph_1.txt");
 		Graph gr = Graph.build(lines, true);
 
 		RecursiveDFS rdfs = new RecursiveDFS();

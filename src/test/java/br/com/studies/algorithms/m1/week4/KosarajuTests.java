@@ -17,33 +17,33 @@ public class KosarajuTests {
 
 	@Test
 	public void testFile1() {
-		buildGraphAndCompare("br/com/studies/algorithms/m1/week4/SCC_test1.txt", "[3,3,3]");
+		buildGraphAndCompare("graphs/SCC_test1.txt", "[3,3,3]");
 	}
 
 	@Test
 	public void testFile2() {
-		buildGraphAndCompare("br/com/studies/algorithms/m1/week4/SCC_test2.txt", "[3,3,2]");
+		buildGraphAndCompare("graphs/SCC_test2.txt", "[3,3,2]");
 	}
 
 	@Test
 	public void testFile3() {
-		buildGraphAndCompare("br/com/studies/algorithms/m1/week4/SCC_test3.txt", "[3,3,1,1]");
+		buildGraphAndCompare("graphs/SCC_test3.txt", "[3,3,1,1]");
 	}
 
 	@Test
 	public void testFile4() {
-		buildGraphAndCompare("br/com/studies/algorithms/m1/week4/SCC_test4.txt", "[7,1]");
+		buildGraphAndCompare("graphs/SCC_test4.txt", "[7,1]");
 	}
 
 	@Test
 	public void testFile5() {
-		buildGraphAndCompare("br/com/studies/algorithms/m1/week4/SCC_test5.txt", "[6,3,2,1]");
+		buildGraphAndCompare("graphs/SCC_test5.txt", "[6,3,2,1]");
 	}
 	
 	@Test
 	@Ignore
 	public void testBigFile(){
-		buildGraphAndCompare("br/com/studies/algorithms/m1/week4/SCC.txt", null);
+		buildGraphAndCompare("graphs/SCC.txt", null);
 	}
 	
 	private void buildGraphAndCompare(String path, String expected) {

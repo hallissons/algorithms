@@ -12,21 +12,21 @@ public class MedianMaintenceTests {
 
 	@Test
 	public void testSumMedians1() {		
-		List<String> entities = FileUtils.readAllLines("br/com/studies/algorithms/m1/week6/median-maintence-tests1.txt");
+		List<String> entities = FileUtils.readAllLines("median-maintence-tests1.txt");
 		long sum = sumMedians(entities);
 		Assert.assertEquals(2, sum);
 	}
 	
 	@Test
 	public void testSumMedians2() {		
-		List<String> entities = FileUtils.readAllLines("br/com/studies/algorithms/m1/week6/median-maintence-tests2.txt");
+		List<String> entities = FileUtils.readAllLines("median-maintence-tests2.txt");
 		long sum = sumMedians(entities);
 		Assert.assertEquals(5, sum);
 	}
 	
 	@Test
 	public void testSumMediansF() {		
-		List<String> entities = FileUtils.readAllLines("br/com/studies/algorithms/m1/week6/Median.txt");
+		List<String> entities = FileUtils.readAllLines("Median.txt");
 		long sum = sumMedians(entities);
 		Assert.assertEquals(1213, sum);
 	}

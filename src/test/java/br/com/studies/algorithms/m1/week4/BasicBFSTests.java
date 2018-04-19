@@ -18,7 +18,7 @@ public class BasicBFSTests {
 
 	@Test
 	public void testVistAllFromFirstNode() {
-		List<String> lines = FileUtils.readAllLines("br/com/studies/algorithms/m1/week4/graph_small_test.txt");
+		List<String> lines = FileUtils.readAllLines("graphs/graph_small_test.txt");
 		Graph gr = Graph.build(lines);
 
 		BasicBFS bfs = new BasicBFS();
@@ -30,7 +30,7 @@ public class BasicBFSTests {
 
 	@Test
 	public void testVisitAllFromRandomNode() {
-		List<String> lines = FileUtils.readAllLines("br/com/studies/algorithms/m1/week4/graph_small_test.txt");
+		List<String> lines = FileUtils.readAllLines("graphs/graph_small_test.txt");
 
 		Graph gr = Graph.build(lines);
 
@@ -48,7 +48,7 @@ public class BasicBFSTests {
 
 	@Test
 	public void testFindShortestPathFromSToE() {
-		List<String> lines = FileUtils.readAllLines("br/com/studies/algorithms/m1/week4/graph_small_test.txt");
+		List<String> lines = FileUtils.readAllLines("graphs/graph_small_test2.txt");
 
 		Graph gr = Graph.build(lines);
 
@@ -62,7 +62,7 @@ public class BasicBFSTests {
 
 	@Test
 	public void testFindConnectedComponents() {
-		List<String> lines = FileUtils.readAllLines("br/com/studies/algorithms/m1/week4/graph_three_connected.txt");
+		List<String> lines = FileUtils.readAllLines("graphs/graph_three_connected.txt");
 
 		Graph gr = Graph.build(lines);
 

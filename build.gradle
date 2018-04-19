@@ -1,0 +1,47 @@
+apply plugin: 'java'
+apply plugin: 'eclipse-wtp'
+
+task setVersion {
+    if ("$version" != "unspecified") {
+        version = "$version"
+    } else {
+        version = System.getenv('ARTIFACT_VERSION') ?: '1.0.0-LOCAL'
+    }
+}
+
+jar {
+    baseName = "${rootProject.name}"
+    version = appVersion
+    manifest {
+        attributes(
+                "Implementation-Title": baseName,
+                "Implementation-Version": version
+        )
+    }
+}
+
+group "br.com.studies"
+version = "$version"
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    maven { url "https://repo.spring.io/milestone"}
+    maven { url "https://oss.sonatype.org/content/repositories/releases"}
+}
+
+
+dependencies {    
+    compile('org.projectlombok:lombok:1.16.10')
+	compile('org.apache.commons:commons-lang3:3.3.2')
+	compile('commons-collections:commons-collections:3.2.2')
+	compile('org.springframework:spring-core:4.3.2.RELEASE')
+
+    compile('org.mockito:mockito-core:1.+')
+    testCompile('junit:junit:4.12')
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '3.5'
+}

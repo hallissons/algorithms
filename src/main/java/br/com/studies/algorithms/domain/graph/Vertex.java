@@ -23,6 +23,10 @@ public class Vertex implements Comparable<Vertex> {
 	public void addEdge(Edge edge) {
 		edges.add(edge);
 	}
+	
+	public void removeEdge(Edge edge) {
+		edges.remove(edge);
+	}
 
 	public Edge getEdgeTo(Vertex v2) {
 		for (Edge edge : edges) {

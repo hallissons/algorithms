@@ -43,7 +43,7 @@ public class ActivityPriorityTests {
 
 	@Test
 	public void testWeightedActivitySelector() {
-		List<String> lines = FileUtils.readAllLines("br/com/studies/algorithms/m2/week1/jobs_1.txt");
+		List<String> lines = FileUtils.readAllLines("jobs_1.txt");
 
 		List<WeightedActivity> actv = new ArrayList<>();
 		for (int i = 1; i < lines.size(); i++) {

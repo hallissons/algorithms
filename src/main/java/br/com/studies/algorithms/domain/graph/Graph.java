@@ -37,9 +37,22 @@ public class Graph {
 		Vertex v = vertices.get(lbl);
 		if (v == null) {
 			v = new Vertex(lbl);
+			v.setIndex(vertices.size());
 			addVertex(v);
 		}
 		return v;
+	}
+	
+	public void addEdge(Edge e){
+		e.getFrom().addEdge(e);
+		e.getTo().addEdge(e);
+		edges.add(e);
+	}
+	
+	public void removeEdge(Edge e){
+		edges.remove(e);
+		e.getFrom().removeEdge(e);
+		e.getTo().removeEdge(e);
 	}
 	
 	public boolean isDirected() {
